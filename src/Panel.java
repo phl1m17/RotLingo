@@ -3,13 +3,12 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Scanner;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -78,15 +77,15 @@ public class Panel extends JPanel implements Runnable, ActionListener{
     }
     private ArrayList<String> loadUsernames() {
         ArrayList<String> names = new ArrayList<>();
-        File file = new File("src/usernames.txt");
-        if (file.exists()) {
-            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    names.add(line.trim());
-                }
-            } catch (IOException e) {}
-        }
+        try{
+            FileReader file = new FileReader("src/usernames.txt");
+            Scanner sc = new Scanner(file);
+            while(sc.hasNext()) {
+                names.add(sc.next());
+            }
+            file.close();
+            sc.close();
+        }catch(IOException e){}
         return names;
     }
 
