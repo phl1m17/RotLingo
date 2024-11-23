@@ -1,8 +1,8 @@
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class UserScreen implements ActionListener{
@@ -16,19 +16,21 @@ public class UserScreen implements ActionListener{
         
         userName = new JTextField();
         userName.setBounds(100,300,200,50);
+        userName.setFont(panel.getFont().deriveFont(16f));
+
+        System.out.println(panel.getDuoGreen());
 
         userButton = new JButton("Enter Username");
         userButton.setBounds(100,400,200,50);
-    }
-    public void removeComponents(){
-        // userButton.setVisible(false);
-        // userName.setVisible(false);
-        userButton.removeActionListener(this);
+        userButton.setBackground(panel.getDuoGreen());
+        userButton.setForeground(Color.white);
+        userButton.setFont(panel.getFont().deriveFont(20f));
+        userButton.addActionListener(this);
+
     }
     public void addComponents(){
         panel.add(userButton);
         panel.add(userName);
-        userButton.addActionListener(this);
     }
     @Override
     public void actionPerformed(ActionEvent e) {

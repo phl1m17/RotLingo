@@ -1,8 +1,11 @@
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.InputStream;
 
 import javax.swing.JPanel;
 
@@ -16,6 +19,9 @@ public class Panel extends JPanel implements Runnable, ActionListener{
     // 1 = level screen
     private int gamePhase = 0;
 
+    Font font = importFont();
+    Color duoGreen = new Color(88,204,2,255);
+
     //Screens
     UserScreen userScreen = new UserScreen(this);
     LevelScreen levelScreen = new LevelScreen(this);
@@ -23,6 +29,23 @@ public class Panel extends JPanel implements Runnable, ActionListener{
     UsernameSaver usernameSaver = new UsernameSaver();
     Thread gameThread;
 
+    //getters
+    public Font getFont(){
+        return font;
+    }
+    public Color getDuoGreen(){
+        return duoGreen;
+    }
+
+    public Font importFont() {
+        try {
+            File file = new File("src/FeatherBold.ttf");
+            Font font = Font.createFont(Font.TRUETYPE_FONT, file).deriveFont(12f);
+            System.out.println("aa");
+            return font;
+        } catch (Exception e) {}
+        return null;
+    }
     public Panel() {
         setPreferredSize(new Dimension(screenWidth,screenHeight));
         setBackground(new Color(34, 42, 51));
