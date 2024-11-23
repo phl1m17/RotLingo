@@ -3,9 +3,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
+
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 public class Panel extends JPanel implements Runnable, ActionListener{
     final int screenWidth = 400;
@@ -13,8 +12,13 @@ public class Panel extends JPanel implements Runnable, ActionListener{
 
     private final int FPS = 60;
 
-    private final JTextField userName;
-    private final JButton userButton;
+    // 0 = enter username
+    // 1 = level screen
+    private int gamePhase = 0;
+
+    //Screens
+    UserScreen userScreen = new UserScreen(this);
+    LevelScreen levelScreen = new LevelScreen(this);
 
     UsernameSaver usernameSaver = new UsernameSaver();
     Thread gameThread;
@@ -23,16 +27,8 @@ public class Panel extends JPanel implements Runnable, ActionListener{
         setPreferredSize(new Dimension(screenWidth,screenHeight));
         setBackground(new Color(34, 42, 51));
 
-        userName = new JTextField();
-        userName.setBounds(100,300,200,50);
-
-        userButton = new JButton("Enter Username");
-        userButton.setBounds(100,400,200,50);
-        userButton.addActionListener(this);
-
         setLayout(null);
-        add(userName);
-        add(userButton);
+        changePhase(0);
     }
     @Override
     public void paintComponent(Graphics g){
@@ -41,13 +37,22 @@ public class Panel extends JPanel implements Runnable, ActionListener{
     public void update(){
         
     }
+    public void changePhase(int phase){
+        System.out.println(phase);
+        removeAll();
+        gamePhase = phase;
+        switch(gamePhase){
+            case 0:
+                userScreen.addComponents();
+                break;
+            case 1:
+                levelScreen.addComponents(); 
+                break;
+        }
+    }
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == userButton) {
-            String enteredUsername = userName.getText().toLowerCase();
-            System.out.println("Entered username: " + enteredUsername);
-            usernameSaver.addUsername(enteredUsername);
-        }
+        
     }
     public void startGameThread(){
         gameThread = new Thread(this);
