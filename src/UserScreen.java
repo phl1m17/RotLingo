@@ -1,7 +1,6 @@
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
@@ -24,9 +23,10 @@ public class UserScreen implements ActionListener{
         userButton.setBounds(100,400,200,50);
         userButton.setBackground(panel.getDuoGreen());
         userButton.setForeground(Color.white);
-        userButton.setFont(panel.getFont().deriveFont(20f));
+        userButton.setOpaque(true);
+        userButton.setBorderPainted(false);
+        userButton.setFont(panel.getFont().deriveFont(18f));
         userButton.addActionListener(this);
-
     }
     public void addComponents(){
         panel.add(userButton);
@@ -34,7 +34,10 @@ public class UserScreen implements ActionListener{
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == userButton) {
+        if(e.getSource() == userButton && (userName.getText().isEmpty() || userName.getText().equals("Enter a Username"))){
+            userName.setText("Enter a Username");
+        }
+        else if (e.getSource() == userButton) {
             String enteredUsername = userName.getText().toLowerCase();
             System.out.println("Entered username: " + enteredUsername);
             panel.usernameSaver.addUsername(enteredUsername);

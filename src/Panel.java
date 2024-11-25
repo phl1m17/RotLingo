@@ -2,14 +2,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.InputStream;
-
 import javax.swing.JPanel;
 
-public class Panel extends JPanel implements Runnable, ActionListener{
+public class Panel extends JPanel implements Runnable{
     final int screenWidth = 400;
     final int screenHeight = 650;
 
@@ -72,10 +68,6 @@ public class Panel extends JPanel implements Runnable, ActionListener{
                 levelScreen.addComponents(); 
                 break;
         }
-    }
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        
     }
     public void startGameThread(){
         gameThread = new Thread(this);

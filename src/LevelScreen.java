@@ -1,8 +1,10 @@
 import java.awt.Color;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
-public class LevelScreen {
+public class LevelScreen implements ActionListener{
     Panel panel;
 
     JButton[] levels = new JButton[6];
@@ -13,14 +15,26 @@ public class LevelScreen {
             levels[i].setBounds((i<2?((i+1)):(i<4?(i-1):(i-3)))*150-70, (i<2?70:(i<4?230:390))+100, 100, 100);
             levels[i].setBackground(panel.getDuoGreen());
             levels[i].setForeground(Color.white);
-            levels[i].setFont(panel.getFont().deriveFont(20f));
+            levels[i].setFont(panel.getFont().deriveFont(30f));
+            levels[i].setOpaque(true);
+            levels[i].setBorder(null);
+            levels[i].setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
             levels[i].setForeground(Color.white);
+            levels[i].addActionListener(this);
         }
     }
     public void addComponents(){
-        for(int i = 0; i<levels.length; i++){
-            panel.add(levels[i]);
-            levels[i].setVisible(true);
+        for (JButton level : levels) {
+            panel.add(level);
+            level.setVisible(true);
+        }
+    }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        for(int i = 0;i<levels.length;i++){
+            if(e.getSource() == levels[i]){
+                System.out.println(i);
+            }
         }
     }
 }
