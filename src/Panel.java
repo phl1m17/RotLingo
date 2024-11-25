@@ -5,8 +5,6 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.InputStream;
-
 import javax.swing.JPanel;
 
 public class Panel extends JPanel implements Runnable, ActionListener{
@@ -71,6 +69,8 @@ public class Panel extends JPanel implements Runnable, ActionListener{
             case 1:
                 levelScreen.addComponents(); 
                 break;
+            case 2:
+                
         }
     }
     @Override

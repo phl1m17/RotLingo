@@ -33,7 +33,7 @@ public class LevelScreen implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         for(int i = 0;i<levels.length;i++){
             if(e.getSource() == levels[i]){
-                System.out.println(i);
+                panel.changePhase(i+2);
             }
         }
     }
