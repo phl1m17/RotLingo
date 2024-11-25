@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import java.io.File;
 import javax.swing.JPanel;
 
-public class Panel extends JPanel implements Runnable{
+public final class Panel extends JPanel implements Runnable{
     final int screenWidth = 400;
     final int screenHeight = 650;
 
@@ -15,8 +15,8 @@ public class Panel extends JPanel implements Runnable{
     // 1 = level screen
     private int gamePhase = 0;
 
-    Font font = importFont();
-    Color duoGreen = new Color(88,204,2,255);
+    private Font font = importFont();
+    private final Color duoGreen = new Color(88,204,2);
 
     //Screens
     UserScreen userScreen = new UserScreen(this);
@@ -26,6 +26,7 @@ public class Panel extends JPanel implements Runnable{
     Thread gameThread;
 
     //getters
+    @Override
     public Font getFont(){
         return font;
     }
@@ -36,7 +37,7 @@ public class Panel extends JPanel implements Runnable{
     public Font importFont() {
         try {
             File file = new File("src/FeatherBold.ttf");
-            Font font = Font.createFont(Font.TRUETYPE_FONT, file).deriveFont(12f);
+            font = Font.createFont(Font.TRUETYPE_FONT, file).deriveFont(12f);
             System.out.println("aa");
             return font;
         } catch (Exception e) {}
@@ -52,9 +53,6 @@ public class Panel extends JPanel implements Runnable{
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-    }
-    public void update(){
-        
     }
     public void changePhase(int phase){
         System.out.println(phase);
@@ -88,7 +86,6 @@ public class Panel extends JPanel implements Runnable{
 			lastTime = currentTime;
 			
 			if(delta>=1) {
-				update();
 				repaint();
 				delta--;
 			}
