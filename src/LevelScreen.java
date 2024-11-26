@@ -33,7 +33,30 @@ public class LevelScreen implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         for(int i = 0;i<levels.length;i++){
             if(e.getSource() == levels[i]){
-                System.out.println(i);
+                levels[i].setBackground(new Color(84,183,11));
+                panel.removeAll();
+                switch (i) {
+                    case 0:
+                        panel.gameScreen.addComponents(i);
+                        break;
+                    case 1:
+                        
+                        break;
+                    case 2:
+                        
+                        break;
+                    case 3:
+                        
+                        break;
+                    case 4:
+                        
+                        break;
+                    case 5:
+                        
+                        break;
+                    default:
+                        throw new AssertionError();
+                }
             }
         }
     }

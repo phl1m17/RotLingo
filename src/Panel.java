@@ -21,6 +21,7 @@ public final class Panel extends JPanel implements Runnable{
     //Screens
     UserScreen userScreen = new UserScreen(this);
     LevelScreen levelScreen = new LevelScreen(this);
+    GameScreen gameScreen = new GameScreen(this);
 
     UsernameSaver usernameSaver = new UsernameSaver();
     Thread gameThread;
