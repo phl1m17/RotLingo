@@ -1,34 +1,55 @@
 
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 
-public class GameScreen {
+public final class GameScreen implements ActionListener{
     Panel panel;
-    JButton answerButton;
+    JButton[]buttons = new JButton[4];
+    JLabel question;
+    ArrayList<String>questions;
+    int questionCount = 0;
     public GameScreen(Panel panel) {
         this.panel = panel;
-        answerButton = new JButton();
-        answerButton.setBounds(20,20,200,50);
-    }
-    public void addComponents(int level){
-        question1(level);
-        panel.add(answerButton);
-    }
-    public void question1(int level){
-        switch (level) {
-            case 0:
-                answerButton.setText("Question1 lesson 1");
-                break;
-            case 1:
-                answerButton.setText("Question1 lesson 2");
-                break;
-            default:
-                throw new AssertionError();
+
+        question = new JLabel();
+        question.setBounds(20, 20, 360, 50);
+        question.setFont(panel.getFont().deriveFont(20f));
+        question.setForeground(Color.white);
+
+        questions = new ArrayList<>(Arrays.asList("question 1","question 2","question 3","question 4"));
+        questions(questionCount);
+        
+        for(int i = 0; i<buttons.length;i++){
+            buttons[i] = new JButton(String.valueOf((i+1)));
+            buttons[i].setBounds((i<2?((i+1)):(i<4?(i-1):(i-3)))*195-172, (i<2?70:(i<4?150:390))+350, 165, 60);
+            buttons[i].setBackground(panel.getDuoGreen());
+            buttons[i].setForeground(Color.white);
+            buttons[i].setFont(panel.getFont().deriveFont(30f));
+            buttons[i].setOpaque(true);
+            buttons[i].setBorder(null);
+            buttons[i].setForeground(Color.white);
+            buttons[i].addActionListener(this);
         }
     }
-    public void question2(){
-        answerButton.setText("Question2");
+    public void addComponents(){
+        for(JButton b : buttons){
+            panel.add(b);
+        }
+        panel.add(question);
     }
-    public void question3(){
-        answerButton.setText("Question3");
+    public void questions(int level){
+        question.setText(questions.get(level));
+    }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource()==buttons[0]){
+            questionCount++;
+            questions(questionCount);
+        }
     }
 }

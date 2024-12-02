@@ -1,7 +1,6 @@
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
 public class LevelScreen implements ActionListener{
@@ -18,7 +17,6 @@ public class LevelScreen implements ActionListener{
             levels[i].setFont(panel.getFont().deriveFont(30f));
             levels[i].setOpaque(true);
             levels[i].setBorder(null);
-            levels[i].setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
             levels[i].setForeground(Color.white);
             levels[i].addActionListener(this);
         }
@@ -33,30 +31,10 @@ public class LevelScreen implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         for(int i = 0;i<levels.length;i++){
             if(e.getSource() == levels[i]){
+                System.out.println(i);
                 levels[i].setBackground(new Color(84,183,11));
                 panel.removeAll();
-                switch (i) {
-                    case 0:
-                        panel.gameScreen.addComponents(i);
-                        break;
-                    case 1:
-                        
-                        break;
-                    case 2:
-                        
-                        break;
-                    case 3:
-                        
-                        break;
-                    case 4:
-                        
-                        break;
-                    case 5:
-                        
-                        break;
-                    default:
-                        throw new AssertionError();
-                }
+                panel.gameScreen.addComponents();
             }
         }
     }

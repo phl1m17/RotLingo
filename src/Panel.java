@@ -34,7 +34,6 @@ public class Panel extends JPanel implements Runnable{
     public Color getDuoGreen(){
         return duoGreen;
     }
-
     public Font importFont() {
         try {
             File file = new File("src/FeatherBold.ttf");
@@ -66,8 +65,6 @@ public class Panel extends JPanel implements Runnable{
             case 1:
                 levelScreen.addComponents(); 
                 break;
-            case 2:
-                
         }
     }
     public void startGameThread(){
