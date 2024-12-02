@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
@@ -26,12 +27,12 @@ public final class GameScreen implements ActionListener{
         
         for(int i = 0; i<buttons.length;i++){
             buttons[i] = new JButton(String.valueOf((i+1)));
-            buttons[i].setBounds((i<2?((i+1)):(i<4?(i-1):(i-3)))*195-172, (i<2?70:(i<4?150:390))+350, 165, 60);
-            buttons[i].setBackground(panel.getDuoGreen());
+            buttons[i].setBounds((i<2?((i+1)):(i<4?(i-1):(i-3)))*195-172, (i<2?70:(i<4?150:390))+400, 165, 60);
+            buttons[i].setBackground(new Color(111, 228, 21));
             buttons[i].setForeground(Color.white);
             buttons[i].setFont(panel.getFont().deriveFont(30f));
             buttons[i].setOpaque(true);
-            buttons[i].setBorder(null);
+            buttons[i].setBorder(BorderFactory.createLineBorder(panel.getDuoGreen(), 4));
             buttons[i].setForeground(Color.white);
             buttons[i].addActionListener(this);
         }
@@ -50,6 +51,9 @@ public final class GameScreen implements ActionListener{
         if(e.getSource()==buttons[0]){
             questionCount++;
             questions(questionCount);
+        }
+        else{
+            question.setText("Incorrect");
         }
     }
 }
