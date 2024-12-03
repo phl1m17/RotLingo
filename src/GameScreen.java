@@ -1,22 +1,16 @@
-
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public final class GameScreen{
     int questionCount = 0;
 
     int levels;
 
-    //Question Classes
-    Question1 q1;
+    Question[] questions = new Question[8];
 
-    ArrayList<String>question1Type;
     public GameScreen(Panel panel) {
-        question1Type = new ArrayList<>(Arrays.asList("Question 1", "Question 2", "Question 3", "Question 4"));
-        q1 = new Question1(this, panel);
+        String[] opts = {"reality", "vibe level", "Tommy", "standard"};
+        questions[questionCount] = new MultipleChoiceQuestion(this, panel, "Unc", opts, 2);
     }
     public void addComponents(){
-        q1.setQuestion(question1Type.get(questionCount));
-        q1.addComponents();
+        questions[questionCount].setQuestion("Question " + (questionCount+1));
+        questions[questionCount].addComponents();
     }
 }

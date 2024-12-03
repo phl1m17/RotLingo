@@ -17,6 +17,7 @@ public class Panel extends JPanel implements Runnable{
 
     private Font font = importFont();
     private final Color duoGreen = new Color(88,204,2);
+    private final Color duoRed = new Color(255,75,75);
 
     //Screens
     UserScreen userScreen = new UserScreen(this);
@@ -34,6 +35,9 @@ public class Panel extends JPanel implements Runnable{
     }
     public Color getDuoGreen(){
         return duoGreen;
+    }
+    public Color getDuoRed(){
+        return duoRed;
     }
     public Font importFont() {
         try {
