@@ -15,7 +15,7 @@ public class MultipleChoiceQuestion extends Question implements ActionListener{
     JLabel word;
 
     //Multiple Choice Type Question
-    public MultipleChoiceQuestion(GameScreen gameScreen, Panel panel, String word, String[] options, int answer) {
+    public MultipleChoiceQuestion(Panel panel, GameScreen gameScreen, String word, String[] options, int answer) {
         this.panel = panel;
         this.gameScreen = gameScreen;
         this.options = options;

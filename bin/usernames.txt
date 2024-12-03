@@ -21,4 +21,15 @@ enter
 a
 usernam
 3
-enter a usernam
+enter
+a
+usernam
+enter
+a
+usernam
+w
+enter
+a
+usernam
+d
+enter a usernae
