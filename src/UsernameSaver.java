@@ -11,7 +11,9 @@ public class UsernameSaver {
     public String getUsername(){
         return username;
     }
-
+    public ArrayList<String> getList(){
+        return usernames;
+    }
     public UsernameSaver() {
         usernames = loadUsernames();
     }

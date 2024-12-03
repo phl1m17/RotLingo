@@ -36,7 +36,8 @@ public class Question1 implements  ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == buttons[0]){
-            System.out.println("a");
+            gameScreen.questionCount++;
+            gameScreen.q1.setQuestion(gameScreen.question1Type.get(gameScreen.questionCount));
         }
     }
     public void addComponents(){
