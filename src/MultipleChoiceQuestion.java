@@ -14,6 +14,8 @@ public class MultipleChoiceQuestion extends Question implements ActionListener{
 
     JLabel word;
 
+    JButton continueButton;
+
     //Multiple Choice Type Question
     public MultipleChoiceQuestion(Panel panel, GameScreen gameScreen, String word, String[] options, int answer) {
         this.panel = panel;
@@ -23,7 +25,7 @@ public class MultipleChoiceQuestion extends Question implements ActionListener{
 
         for(int i = 0; i<buttons.length;i++){
             buttons[i] = new JButton(options[i]);
-            buttons[i].setBounds((i<2?((i+1)):(i<4?(i-1):(i-3)))*195-172, (i<2?70:(i<4?150:390))+400, 165, 60);
+            buttons[i].setBounds((i<2?((i+1)):(i<4?(i-1):(i-3)))*195-172, (i<2?70:(i<4?150:390))+350, 165, 60);
             buttons[i].setBackground(panel.getDuoNavyBlue());
             buttons[i].setForeground(Color.white);
             buttons[i].setFont(panel.getFont().deriveFont(30f));
@@ -40,7 +42,14 @@ public class MultipleChoiceQuestion extends Question implements ActionListener{
         this.word.setBounds(panel.screenWidth/2-360/2, panel.screenHeight/2-50, 360, 50);
         this.word.setFont(panel.getFont().deriveFont(50f));
         this.word.setForeground(Color.white);
-        
+        continueButton = new JButton("Continue");
+        continueButton.setBounds(10, panel.screenHeight-60, panel.screenWidth-20, 50);
+        continueButton.setBackground(panel.getDuoNavyBlue());
+        continueButton.setForeground(Color.white);
+        continueButton.setFont(panel.getFont().deriveFont(30f));
+        continueButton.setOpaque(true);
+        continueButton.setBorder(BorderFactory.createLineBorder(panel.getDuoNavyBlue(), 4));
+        continueButton.addActionListener(this);
     }
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -52,6 +61,9 @@ public class MultipleChoiceQuestion extends Question implements ActionListener{
                     buttons[i].setBackground(panel.getDuoRed());
                     buttons[i].setBorder(BorderFactory.createLineBorder(panel.getDuoRed()));
                 }
+                for(int j = 0; j<4; j++){
+                    buttons[j].setEnabled(false);
+                }
                 break;
             }
         }
@@ -62,5 +74,6 @@ public class MultipleChoiceQuestion extends Question implements ActionListener{
         }
         panel.add(question);
         panel.add(word);
+        panel.add(continueButton);
     }
 }
