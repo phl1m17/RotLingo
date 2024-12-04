@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -18,6 +19,7 @@ public class Panel extends JPanel implements Runnable{
     private Font font = importFont();
     private final Color duoGreen = new Color(88,204,2);
     private final Color duoRed = new Color(255,75,75);
+    private final Color duoNavyBlue = new Color(24, 32, 39);
 
     //Screens
     UserScreen userScreen = new UserScreen(this);
@@ -38,6 +40,9 @@ public class Panel extends JPanel implements Runnable{
     }
     public Color getDuoRed(){
         return duoRed;
+    }
+    public Color getDuoNavyBlue(){
+        return duoNavyBlue;
     }
     public Font importFont() {
         try {
@@ -82,7 +87,6 @@ public class Panel extends JPanel implements Runnable{
 		final double drawInterval = 1000000000/FPS;
 		double delta = 0;
 		long lastTime = System.nanoTime();
-		
 		while(gameThread.isAlive()) {
 			long currentTime = System.nanoTime();
 			

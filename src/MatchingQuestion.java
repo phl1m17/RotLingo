@@ -13,6 +13,7 @@ public class MatchingQuestion extends Question implements ItemListener{
     String[][] answers = new String[2][5];
     Boolean[][] wasSelected = {{false, false, false, false, false}, {false, false, false, false, false}};
     int trys = 3;
+    int[] ab = {-1,-1};
 
     public MatchingQuestion(Panel panel, GameScreen gameScreen, String[][] answers){
         this.panel = panel;
@@ -24,11 +25,11 @@ public class MatchingQuestion extends Question implements ItemListener{
             for(int j = 0; j<buttons[i].length; j++){
                 buttons[i][j] = new JToggleButton(options[i][j]);
                 buttons[i][j].setBounds(15+i*190, 120+j*80, 180, 60);
-                buttons[i][j].setBackground(new Color(24, 32, 39));
+                buttons[i][j].setBackground(panel.getDuoNavyBlue());
                 buttons[i][j].setForeground(Color.white);
                 buttons[i][j].setFont(panel.getFont().deriveFont(25f));
                 buttons[i][j].setOpaque(true);
-                buttons[i][j].setBorder(BorderFactory.createLineBorder(new Color(24, 32, 39), 4));
+                buttons[i][j].setBorder(BorderFactory.createLineBorder(panel.getDuoNavyBlue(), 4));
                 buttons[i][j].setForeground(Color.white);
                 buttons[i][j].addItemListener(this);
             }
@@ -69,6 +70,10 @@ public class MatchingQuestion extends Question implements ItemListener{
                         }
                     } 
                     wasSelected[i][j] = true;
+                    ab[i] = j;
+                    if(ab[0]>-1&&ab[1]>-1){
+                        check(ab[0],ab[1]);
+                    }
                 }
                 else if(wasSelected[i][j]==true){
                     for(int k = 0; k<buttons[i].length; k++){
@@ -77,18 +82,33 @@ public class MatchingQuestion extends Question implements ItemListener{
                         }
                     } 
                     wasSelected[i][j] =false;
+                    ab[i] = -1;
                 }
             }
         }
     }
-    public boolean check(int a, int b){
+    public void check(int a, int b){
         for(int i = 0; i<options[0].length; i++){
             if(options[0][a].equals(answers[0][i])){
                 if(answers[1][i].equals(options[1][b])){
                     buttons[0][a].setBackground(panel.getDuoGreen());
+                    buttons[1][b].setBackground(panel.getDuoGreen());
+                    buttons[0][a].setSelected(false);
+                    buttons[1][b].setSelected(false);  
+                    return;
                 }
             }
         }
+        buttons[0][a].setBackground(panel.getDuoRed());
+        buttons[1][b].setBackground(panel.getDuoRed());
+        buttons[0][a].setSelected(false);
+        buttons[1][b].setSelected(false);
+        long pastTime = System.nanoTime();
+        long currentTime = System.nanoTime();
+        while(currentTime-pastTime<900000000){
+            currentTime = System.nanoTime();
+            buttons[0][a].setBackground(panel.getDuoRed());
+        }    
         trys--;
     }
 }

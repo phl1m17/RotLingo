@@ -32,4 +32,8 @@ enter
 a
 usernam
 d
-enter a usernae
+enter
+a
+usernae
+2
+ss

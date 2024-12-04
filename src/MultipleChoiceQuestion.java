@@ -24,11 +24,11 @@ public class MultipleChoiceQuestion extends Question implements ActionListener{
         for(int i = 0; i<buttons.length;i++){
             buttons[i] = new JButton(options[i]);
             buttons[i].setBounds((i<2?((i+1)):(i<4?(i-1):(i-3)))*195-172, (i<2?70:(i<4?150:390))+400, 165, 60);
-            buttons[i].setBackground(new Color(24, 32, 39));
+            buttons[i].setBackground(panel.getDuoNavyBlue());
             buttons[i].setForeground(Color.white);
             buttons[i].setFont(panel.getFont().deriveFont(30f));
             buttons[i].setOpaque(true);
-            buttons[i].setBorder(BorderFactory.createLineBorder(new Color(24, 32, 39), 4));
+            buttons[i].setBorder(BorderFactory.createLineBorder(panel.getDuoNavyBlue(), 4));
             buttons[i].setForeground(Color.white);
             buttons[i].addActionListener(this);
         }
