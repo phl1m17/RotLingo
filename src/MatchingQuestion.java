@@ -19,7 +19,11 @@ public class MatchingQuestion extends Question implements ItemListener{
         this.panel = panel;
         this.gameScreen = gameScreen;
         this.answers = answers;
-        this.options = shuffle(answers);
+        this.options = new String[answers.length][];
+        for(int i = 0; i<answers.length; i++){
+            this.options[i] = answers[i].clone();
+        }
+        shuffle(this.options);
 
         for(int i = 0; i<buttons.length;i++){
             for(int j = 0; j<buttons[i].length; j++){
@@ -39,8 +43,7 @@ public class MatchingQuestion extends Question implements ItemListener{
         question.setFont(panel.getFont().deriveFont(20f));
         question.setForeground(Color.white);
     }
-    public static String[][] shuffle(String[][] ar){
-        String[][] arr = ar;
+    public static void shuffle(String[][] arr){
         for(int i = 0; i<arr.length; i++){
             for(int j = 0; j<20; j++){
                 int ran = (int)(Math.random()*arr[i].length);
@@ -49,7 +52,6 @@ public class MatchingQuestion extends Question implements ItemListener{
                 arr[i][ran] = temp;
             }
         }
-        return arr;
     }
     public void addComponents(){
         for(int i = 0; i<buttons.length;i++){
@@ -88,7 +90,8 @@ public class MatchingQuestion extends Question implements ItemListener{
         }
     }
     public void check(int a, int b){
-        for(int i = 0; i<options[0].length; i++){
+        for(int i = 0; i<answers[0].length; i++){
+            System.out.println(answers[0][i] + ", " + answers[1][i]);
             if(options[0][a].equals(answers[0][i])){
                 if(answers[1][i].equals(options[1][b])){
                     buttons[0][a].setBackground(panel.getDuoGreen());
@@ -104,11 +107,11 @@ public class MatchingQuestion extends Question implements ItemListener{
         buttons[0][a].setSelected(false);
         buttons[1][b].setSelected(false);
         long pastTime = System.nanoTime();
-        long currentTime = System.nanoTime();
+        long currentTime = System.nanoTime();   
         while(currentTime-pastTime<900000000){
             currentTime = System.nanoTime();
             buttons[0][a].setBackground(panel.getDuoRed());
-        }    
+        } 
         trys--;
     }
 }
