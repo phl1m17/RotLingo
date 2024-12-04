@@ -29,7 +29,6 @@ public class MultipleChoiceQuestion extends Question implements ActionListener{
             buttons[i].setFont(panel.getFont().deriveFont(30f));
             buttons[i].setOpaque(true);
             buttons[i].setBorder(BorderFactory.createLineBorder(panel.getDuoNavyBlue(), 4));
-            buttons[i].setForeground(Color.white);
             buttons[i].addActionListener(this);
         }
 

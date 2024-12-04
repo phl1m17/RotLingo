@@ -1,5 +1,4 @@
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -20,6 +19,7 @@ public class Panel extends JPanel implements Runnable{
     private final Color duoGreen = new Color(88,204,2);
     private final Color duoRed = new Color(255,75,75);
     private final Color duoNavyBlue = new Color(24, 32, 39);
+    private final Color duoBlue = new Color(28, 176, 246);
 
     //Screens
     UserScreen userScreen = new UserScreen(this);
@@ -43,6 +43,9 @@ public class Panel extends JPanel implements Runnable{
     }
     public Color getDuoNavyBlue(){
         return duoNavyBlue;
+    }
+    public Color getDuoBlue(){
+        return duoBlue;
     }
     public Font importFont() {
         try {

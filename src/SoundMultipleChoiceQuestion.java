@@ -41,10 +41,9 @@ public class SoundMultipleChoiceQuestion extends Question implements ActionListe
             buttons[i].setBounds((i<2?((i+1)):(i<4?(i-1):(i-3)))*195-172, (i<2?70:(i<4?150:390))+400, 165, 60);
             buttons[i].setBackground(panel.getDuoNavyBlue());
             buttons[i].setForeground(Color.white);
-            buttons[i].setFont(panel.getFont().deriveFont(30f));
+            buttons[i].setFont(panel.getFont().deriveFont(20f));
             buttons[i].setOpaque(true);
             buttons[i].setBorder(BorderFactory.createLineBorder(panel.getDuoNavyBlue(), 4));
-            buttons[i].setForeground(Color.white);
             buttons[i].addActionListener(this);
         }
 
@@ -53,10 +52,11 @@ public class SoundMultipleChoiceQuestion extends Question implements ActionListe
         question.setFont(panel.getFont().deriveFont(20f));
         question.setForeground(Color.white);
         audioButton = new JButton("play");
-        audioButton.setBounds(panel.screenWidth/2-360/2, panel.screenHeight/2-50, 360, 50);
-        audioButton.setFont(panel.getFont().deriveFont(50f));
-        audioButton.setForeground(Color.white);
+        audioButton.setBounds(panel.screenWidth/2-120/2, panel.screenHeight/2-80, 120, 80);
+        audioButton.setFont(panel.getFont().deriveFont(30f));
+        audioButton.setForeground(panel.getDuoNavyBlue());
         audioButton.addActionListener(this);
+        audioButton.setBackground(panel.getDuoBlue());
     }
     @Override
     public void actionPerformed(ActionEvent e) {
