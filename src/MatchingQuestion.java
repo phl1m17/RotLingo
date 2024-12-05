@@ -1,14 +1,13 @@
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JToggleButton;
-import javax.swing.text.StyledEditorKit.BoldAction;
-
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.awt.Color;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JToggleButton;
+import javax.swing.Timer;
 
 public class MatchingQuestion extends Question implements ItemListener, ActionListener{
     JToggleButton[][] buttons = new JToggleButton[2][5];
@@ -67,16 +66,17 @@ public class MatchingQuestion extends Question implements ItemListener, ActionLi
             }
         }
     }
+    @Override
     public void addComponents(){
-        for(int i = 0; i<buttons.length;i++){
-            for(int j = 0; j<buttons[i].length; j++){
-                panel.add(buttons[i][j]);
+        for (JToggleButton[] button1 : buttons) {
+            for (JToggleButton button : button1) {
+                panel.add(button);
             }
         }
         panel.add(question);
         panel.add(continueButton);
     }
-    //Override
+    @Override
     public void itemStateChanged(ItemEvent e) {
         for(int i = 0; i<buttons.length;i++){
             for(int j = 0; j<buttons[i].length; j++){
@@ -122,20 +122,28 @@ public class MatchingQuestion extends Question implements ItemListener, ActionLi
             }
         }
         buttons[0][a].setBackground(panel.getDuoRed());
-        buttons[1][b].setBackground(panel.getDuoRed());
-        buttons[0][a].setSelected(false);
-        buttons[1][b].setSelected(false);
-        long pastTime = System.nanoTime();
-        long currentTime = System.nanoTime();   
-        while(currentTime-pastTime<900000000){
-            currentTime = System.nanoTime();
+            buttons[1][b].setBackground(panel.getDuoRed());
+            buttons[0][a].setSelected(false);
+            buttons[1][b].setSelected(false);
+            
             buttons[0][a].setBackground(panel.getDuoRed());
-        } 
+                buttons[1][b].setBackground(panel.getDuoRed());
+        
+                Timer timer = new Timer(1000, new ActionListener(){
+                    // Anonymous Class
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        buttons[0][a].setBackground(panel.getDuoNavyBlue());
+                        buttons[1][b].setBackground(panel.getDuoNavyBlue());
+                    }
+                    
+                });
+                timer.setRepeats(false);
+                timer.start();
         trys--;
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
+
     }
 }
