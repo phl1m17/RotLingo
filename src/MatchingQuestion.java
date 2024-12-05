@@ -4,15 +4,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JToggleButton;
 import javax.swing.Timer;
 
-public class MatchingQuestion extends Question implements ItemListener, ActionListener{
+public class MatchingQuestion extends Question implements ItemListener{
     JToggleButton[][] buttons = new JToggleButton[2][5];
-
-    JButton continueButton;
 
     String[][] options = new String[2][5];
     String[][] answers = new String[2][5];
@@ -47,14 +44,6 @@ public class MatchingQuestion extends Question implements ItemListener, ActionLi
         question.setBounds(20, 20, 360, 50);
         question.setFont(panel.getFont().deriveFont(20f));
         question.setForeground(Color.white);
-        continueButton = new JButton("Continue");
-        continueButton.setBounds(10, panel.screenHeight-60, panel.screenWidth-20, 50);
-        continueButton.setBackground(panel.getDuoNavyBlue());
-        continueButton.setForeground(Color.white);
-        continueButton.setFont(panel.getFont().deriveFont(30f));
-        continueButton.setOpaque(true);
-        continueButton.setBorder(BorderFactory.createLineBorder(panel.getDuoNavyBlue(), 4));
-        continueButton.addActionListener(this);
     }
     public static void shuffle(String[][] arr){
         for(int i = 0; i<arr.length; i++){
@@ -76,7 +65,6 @@ public class MatchingQuestion extends Question implements ItemListener, ActionLi
             }
         }
         panel.add(question);
-        panel.add(continueButton);
     }
     @Override
     public void itemStateChanged(ItemEvent e) {
@@ -130,7 +118,9 @@ public class MatchingQuestion extends Question implements ItemListener, ActionLi
                             button.setEnabled(false);
                         }
                     }
-                    continueButton.setBackground(panel.getDuoGreen());
+                    gameScreen.continueButton.setBackground(panel.getDuoGreen());
+                    this.score = true;
+                    gameScreen.continueButton.setEnabled(true);
                     return;
                 }
             }
@@ -164,11 +154,8 @@ public class MatchingQuestion extends Question implements ItemListener, ActionLi
                     button.setEnabled(false);
                 }
             }
-            continueButton.setBackground(panel.getDuoRed());
+            gameScreen.continueButton.setBackground(panel.getDuoRed());
+            gameScreen.continueButton.setEnabled(true);
         }
-    }
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
     }
 }

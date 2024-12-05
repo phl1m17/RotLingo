@@ -21,7 +21,6 @@ public class SentenceMakingQuestion extends Question implements ItemListener, Ac
     
     boolean[][] added = {{false,false,false,false},{false,false,false,false}};
 
-    JButton continueButton;
     JButton checkButton;
 
     //Multiple Choice Type Question
@@ -59,17 +58,8 @@ public class SentenceMakingQuestion extends Question implements ItemListener, Ac
         formedWord.setFont(panel.getFont().deriveFont(12f));
         formedWord.setForeground(Color.white);
 
-        continueButton = new JButton("Continue");
-        continueButton.setBounds(10, panel.screenHeight-60, panel.screenWidth-20, 50);
-        continueButton.setBackground(panel.getDuoNavyBlue());
-        continueButton.setForeground(Color.white);
-        continueButton.setFont(panel.getFont().deriveFont(30f));
-        continueButton.setOpaque(true);
-        continueButton.setBorder(BorderFactory.createLineBorder(panel.getDuoNavyBlue(), 4));
-        continueButton.addActionListener(this); 
-
         checkButton = new JButton("Check");
-        checkButton.setBounds(panel.screenWidth/2-50/2, continueButton.getY()-60, 50, 50);
+        checkButton.setBounds(panel.screenWidth/2-50/2, gameScreen.continueButton.getY()-60, 50, 50);
         checkButton.setBackground(panel.getDuoNavyBlue());
         checkButton.setForeground(Color.white);
         checkButton.setFont(panel.getFont().deriveFont(30f));
@@ -80,6 +70,7 @@ public class SentenceMakingQuestion extends Question implements ItemListener, Ac
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==checkButton){
             System.out.println(formedWord.getText());
+            gameScreen.continueButton.setEnabled(true);
             if(formedWord.getText().equalsIgnoreCase(" "+answer)){
                 for(JToggleButton[] buttons1 : buttons){
                     for(JToggleButton b: buttons1){
@@ -88,9 +79,10 @@ public class SentenceMakingQuestion extends Question implements ItemListener, Ac
                         b.setBackground(panel.getDuoGreen());
                     }
                 }
-                continueButton.setBackground(panel.getDuoGreen());
+                gameScreen.continueButton.setBackground(panel.getDuoGreen());
                 checkButton.setBackground(panel.getDuoGreen());
                 checkButton.setEnabled(false);
+                this.score = true;
             }
             else{
                 for(JToggleButton[] buttons1 : buttons){
@@ -100,7 +92,7 @@ public class SentenceMakingQuestion extends Question implements ItemListener, Ac
                         b.setBackground(panel.getDuoRed());
                     }
                 }
-                continueButton.setBackground(panel.getDuoRed());
+                gameScreen.continueButton.setBackground(panel.getDuoRed());
                 checkButton.setBackground(panel.getDuoRed());
                 checkButton.setEnabled(false);
             }
@@ -129,7 +121,6 @@ public class SentenceMakingQuestion extends Question implements ItemListener, Ac
         panel.add(word);
         panel.add(formedWord);
         panel.add(question);
-        panel.add(continueButton);
         panel.add(checkButton);
     }
 }

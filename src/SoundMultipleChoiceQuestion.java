@@ -12,8 +12,6 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-
 public class SoundMultipleChoiceQuestion extends Question implements ActionListener{
     JButton[] buttons = new JButton[4];
 
@@ -21,9 +19,6 @@ public class SoundMultipleChoiceQuestion extends Question implements ActionListe
     int answer;
 
     JLabel word;
-
-    JButton continueButton;
-
     JButton audioButton;
     AudioInputStream audioInputStream; 
     Clip clip;
@@ -59,14 +54,6 @@ public class SoundMultipleChoiceQuestion extends Question implements ActionListe
         audioButton.setForeground(panel.getDuoNavyBlue());
         audioButton.addActionListener(this);
         audioButton.setBackground(panel.getDuoBlue());
-        continueButton = new JButton("Continue");
-        continueButton.setBounds(10, panel.screenHeight-60, panel.screenWidth-20, 50);
-        continueButton.setBackground(panel.getDuoNavyBlue());
-        continueButton.setForeground(Color.white);
-        continueButton.setFont(panel.getFont().deriveFont(30f));
-        continueButton.setOpaque(true);
-        continueButton.setBorder(BorderFactory.createLineBorder(panel.getDuoNavyBlue(), 4));
-        continueButton.addActionListener(this);
     }
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -77,10 +64,12 @@ public class SoundMultipleChoiceQuestion extends Question implements ActionListe
                 if(!options[i].equals(options[answer])){   
                     buttons[i].setBackground(panel.getDuoRed());
                     buttons[i].setBorder(BorderFactory.createLineBorder(panel.getDuoRed()));
+                    this.score = true;
                 }
                 for(int j = 0; j<4; j++){
                     buttons[j].setEnabled(false);
                 }
+                gameScreen.continueButton.setEnabled(true);
                 break;
             }
         }
@@ -95,6 +84,5 @@ public class SoundMultipleChoiceQuestion extends Question implements ActionListe
         }
         panel.add(question);
         panel.add(audioButton);
-        panel.add(continueButton);
     }
 }

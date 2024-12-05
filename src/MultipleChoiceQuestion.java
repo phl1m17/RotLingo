@@ -14,8 +14,6 @@ public class MultipleChoiceQuestion extends Question implements ActionListener{
 
     JLabel word;
 
-    JButton continueButton;
-
     //Multiple Choice Type Question
     public MultipleChoiceQuestion(Panel panel, GameScreen gameScreen, String word, String[] options, int answer) {
         this.panel = panel;
@@ -42,14 +40,6 @@ public class MultipleChoiceQuestion extends Question implements ActionListener{
         this.word.setBounds(panel.screenWidth/2-360/2, panel.screenHeight/2-50, 360, 50);
         this.word.setFont(panel.getFont().deriveFont(50f));
         this.word.setForeground(Color.white);
-        continueButton = new JButton("Continue");
-        continueButton.setBounds(10, panel.screenHeight-60, panel.screenWidth-20, 50);
-        continueButton.setBackground(panel.getDuoNavyBlue());
-        continueButton.setForeground(Color.white);
-        continueButton.setFont(panel.getFont().deriveFont(30f));
-        continueButton.setOpaque(true);
-        continueButton.setBorder(BorderFactory.createLineBorder(panel.getDuoNavyBlue(), 4));
-        continueButton.addActionListener(this);
     }
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -60,10 +50,12 @@ public class MultipleChoiceQuestion extends Question implements ActionListener{
                 if(!options[i].equals(options[answer])){   
                     buttons[i].setBackground(panel.getDuoRed());
                     buttons[i].setBorder(BorderFactory.createLineBorder(panel.getDuoRed()));
+                    this.score = true;
                 }
                 for(int j = 0; j<4; j++){
                     buttons[j].setEnabled(false);
                 }
+                gameScreen.continueButton.setEnabled(true);
                 break;
             }
         }
@@ -74,6 +66,5 @@ public class MultipleChoiceQuestion extends Question implements ActionListener{
         }
         panel.add(question);
         panel.add(word);
-        panel.add(continueButton);
     }
 }
