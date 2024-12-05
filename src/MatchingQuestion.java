@@ -58,11 +58,13 @@ public class MatchingQuestion extends Question implements ItemListener, ActionLi
     }
     public static void shuffle(String[][] arr){
         for(int i = 0; i<arr.length; i++){
-            for(int j = 0; j<20; j++){
-                int ran = (int)(Math.random()*arr[i].length);
-                String temp = arr[i][0];
-                arr[i][0] = arr[i][ran];
-                arr[i][ran] = temp;
+            for(int j = 0; j<5; j++){
+                int ran1 = (int)(Math.random()*arr[i].length);
+                int ran2 = (int)(Math.random()*arr[i].length);
+                System.out.println(ran1);
+                String temp = arr[i][ran2];
+                arr[i][ran2] = arr[i][ran1];
+                arr[i][ran1] = temp;
             }
         }
     }
@@ -117,30 +119,53 @@ public class MatchingQuestion extends Question implements ItemListener, ActionLi
                     buttonDone[1][b] = true;
                     buttons[0][a].setEnabled(false);
                     buttons[1][b].setEnabled(false);
+                    for(boolean button: buttonDone[0]){
+                        if(!button){
+                            return;
+                        }
+                    }
+                    for (JToggleButton[] button1 : buttons) {
+                        for (JToggleButton button : button1) {
+                            button.setBackground(panel.getDuoGreen());
+                            button.setEnabled(false);
+                        }
+                    }
+                    continueButton.setBackground(panel.getDuoGreen());
                     return;
                 }
             }
         }
         buttons[0][a].setBackground(panel.getDuoRed());
-            buttons[1][b].setBackground(panel.getDuoRed());
-            buttons[0][a].setSelected(false);
-            buttons[1][b].setSelected(false);
+        buttons[1][b].setBackground(panel.getDuoRed());
+        buttons[0][a].setSelected(false);
+        buttons[1][b].setSelected(false);
             
-            buttons[0][a].setBackground(panel.getDuoRed());
-                buttons[1][b].setBackground(panel.getDuoRed());
+        buttons[0][a].setBackground(panel.getDuoRed());
+        buttons[1][b].setBackground(panel.getDuoRed());
         
-                Timer timer = new Timer(1000, new ActionListener(){
-                    // Anonymous Class
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        buttons[0][a].setBackground(panel.getDuoNavyBlue());
-                        buttons[1][b].setBackground(panel.getDuoNavyBlue());
-                    }
-                    
-                });
-                timer.setRepeats(false);
-                timer.start();
+        Timer timer = new Timer(1000, new ActionListener(){
+            // Anonymous Class
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(trys>=0){
+                    buttons[0][a].setBackground(panel.getDuoNavyBlue());
+                    buttons[1][b].setBackground(panel.getDuoNavyBlue());
+                }
+            }
+            
+        });
+        timer.setRepeats(false);
+        timer.start();
         trys--;
+        if(trys<0){
+            for (JToggleButton[] button1 : buttons) {
+                for (JToggleButton button : button1) {
+                    button.setBackground(panel.getDuoRed());
+                    button.setEnabled(false);
+                }
+            }
+            continueButton.setBackground(panel.getDuoRed());
+        }
     }
     @Override
     public void actionPerformed(ActionEvent e) {
