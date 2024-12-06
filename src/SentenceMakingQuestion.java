@@ -59,7 +59,7 @@ public class SentenceMakingQuestion extends Question implements ItemListener, Ac
         formedWord.setForeground(Color.white);
 
         checkButton = new JButton("Check");
-        checkButton.setBounds(panel.screenWidth/2-50/2, gameScreen.continueButton.getY()-60, 50, 50);
+        checkButton.setBounds(panel.screenWidth/2-100/2, gameScreen.continueButton.getY()-60, 100, 50);
         checkButton.setBackground(panel.getDuoNavyBlue());
         checkButton.setForeground(Color.white);
         checkButton.setFont(panel.getFont().deriveFont(30f));

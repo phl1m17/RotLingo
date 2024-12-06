@@ -50,7 +50,11 @@ public class MultipleChoiceQuestion extends Question implements ActionListener{
                 if(!options[i].equals(options[answer])){   
                     buttons[i].setBackground(panel.getDuoRed());
                     buttons[i].setBorder(BorderFactory.createLineBorder(panel.getDuoRed()));
+                    gameScreen.continueButton.setBackground(panel.getDuoRed());
                     this.score = true;
+                }
+                else{
+                    gameScreen.continueButton.setBackground(panel.getDuoGreen());
                 }
                 for(int j = 0; j<4; j++){
                     buttons[j].setEnabled(false);

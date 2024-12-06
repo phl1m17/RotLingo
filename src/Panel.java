@@ -47,6 +47,9 @@ public class Panel extends JPanel implements Runnable{
     public Color getDuoBlue(){
         return duoBlue;
     }
+    public int getGamePhase(){
+        return gamePhase;
+    }
     public Font importFont() {
         try {
             File file = new File("src/FeatherBold.ttf");
@@ -71,13 +74,14 @@ public class Panel extends JPanel implements Runnable{
         System.out.println(phase);
         removeAll();
         gamePhase = phase;
-        switch(gamePhase){
-            case 0:
-                userScreen.addComponents();
-                break;
-            case 1:
-                levelScreen.addComponents(); 
-                break;
+        if(gamePhase == 0){
+            userScreen.addComponents();
+        }
+        else if(gamePhase == 1){
+            levelScreen.addComponents(); 
+        }
+        else if(gamePhase > 1){
+            gameScreen.addComponents();
         }
     }
     public void startGameThread(){

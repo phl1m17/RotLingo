@@ -8,6 +8,7 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 
 import java.awt.Color;
 
@@ -18,6 +19,9 @@ public final class GameScreen implements ActionListener{
     Panel panel;
 
     JButton continueButton;
+
+    int score;
+    JLabel scoreLabel;
 
     ArrayList<Question> questions = new ArrayList<>();
 
@@ -58,9 +62,16 @@ public final class GameScreen implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==continueButton){
-            questionCount++;
-            panel.removeAll();
-            addComponents();;
+            continueButton.setBackground(panel.getDuoNavyBlue());
+            if(questionCount>=questions.size()-1){
+                panel.levelScreen.levelsFinished[panel.getGamePhase()-2] = true;
+                panel.changePhase(1);
+            }
+            else{
+                questionCount++;
+                panel.removeAll();
+                addComponents();
+            }
         }
     }
 }
