@@ -20,9 +20,6 @@ public class UserScreen implements ActionListener{
         userName = new JTextField();
         userName.setBounds(100,300,200,50);
         userName.setFont(panel.getFont().deriveFont(16f));
-
-        System.out.println(panel.getDuoGreen());
-
         userButton = new JButton("Enter Username");
         userButton.setBounds(100,400,200,50);
         userButton.setBackground(panel.getDuoGreen());

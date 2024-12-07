@@ -9,6 +9,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 import java.awt.Color;
 
@@ -35,9 +36,17 @@ public final class GameScreen implements ActionListener{
         continueButton.setOpaque(true);
         continueButton.setBorder(BorderFactory.createLineBorder(panel.getDuoNavyBlue(), 4));
         continueButton.addActionListener(this); 
+
+        scoreLabel = new JLabel("", SwingConstants.CENTER);
+        scoreLabel.setBounds(20, 200, 360, 50);
+        scoreLabel.setFont(panel.getFont().deriveFont(40f));
+        scoreLabel.setForeground(Color.white);
+    }
+    public void levelStart(){
         level1();
     }
     public void level1(){
+        questions.clear();
         String[] opts = {"Cool Points", "Older Male", "Not Lying", "Charisma"};
         try {
             questions.add(new SoundMultipleChoiceQuestion(panel, this, opts, 3, "src/Sounds/Rizz.wav"));
@@ -63,9 +72,17 @@ public final class GameScreen implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==continueButton){
             continueButton.setBackground(panel.getDuoNavyBlue());
-            if(questionCount>=questions.size()-1){
+            if(questionCount==questions.size()){
                 panel.levelScreen.levelsFinished[panel.getGamePhase()-2] = true;
                 panel.changePhase(1);
+                questionCount = 0;
+            }
+            else if(questionCount==questions.size()-1){
+                panel.removeAll();
+                panel.add(continueButton);
+                scoreLabel.setText("Marks: " + String.format("%.2f", (((double)score/questions.size())*100)) + "%");
+                panel.add(scoreLabel);
+                questionCount++;
             }
             else{
                 questionCount++;

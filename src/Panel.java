@@ -54,7 +54,6 @@ public class Panel extends JPanel implements Runnable{
         try {
             File file = new File("src/FeatherBold.ttf");
             font = Font.createFont(Font.TRUETYPE_FONT, file).deriveFont(12f);
-            System.out.println("aa");
             return font;
         } catch (Exception e) {}
         return null;
@@ -71,7 +70,6 @@ public class Panel extends JPanel implements Runnable{
         super.paintComponent(g);
     }
     public void changePhase(int phase){
-        System.out.println(phase);
         removeAll();
         gamePhase = phase;
         if(gamePhase == 0){
@@ -81,6 +79,7 @@ public class Panel extends JPanel implements Runnable{
             levelScreen.addComponents(); 
         }
         else if(gamePhase > 1){
+            gameScreen.levelStart();
             gameScreen.addComponents();
         }
     }

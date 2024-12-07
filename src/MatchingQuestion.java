@@ -53,7 +53,6 @@ public class MatchingQuestion extends Question implements ItemListener{
             for(int j = 0; j<5; j++){
                 int ran1 = (int)(Math.random()*arr[i].length);
                 int ran2 = (int)(Math.random()*arr[i].length);
-                System.out.println(ran1);
                 String temp = arr[i][ran2];
                 arr[i][ran2] = arr[i][ran1];
                 arr[i][ran1] = temp;
@@ -97,7 +96,6 @@ public class MatchingQuestion extends Question implements ItemListener{
     }
     public void check(int a, int b){
         for(int i = 0; i<answers[0].length; i++){
-            System.out.println(answers[0][i] + ", " + answers[1][i]);
             if(options[0][a].equals(answers[0][i])){
                 if(answers[1][i].equals(options[1][b])){
                     buttons[0][a].setBackground(panel.getDuoGreen());
@@ -122,7 +120,7 @@ public class MatchingQuestion extends Question implements ItemListener{
                         }
                     }
                     gameScreen.continueButton.setBackground(panel.getDuoGreen());
-                    this.score = true;
+                    gameScreen.score++;
                     gameScreen.continueButton.setEnabled(true);
                     return;
                 }
@@ -140,7 +138,7 @@ public class MatchingQuestion extends Question implements ItemListener{
             // Anonymous Class
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(trys>=0){
+                if(trys>0){
                     buttons[0][a].setBackground(panel.getDuoNavyBlue());
                     buttons[1][b].setBackground(panel.getDuoNavyBlue());
                 }
@@ -150,7 +148,7 @@ public class MatchingQuestion extends Question implements ItemListener{
         timer.setRepeats(false);
         timer.start();
         trys--;
-        if(trys<0){
+        if(trys<=0){
             for (JToggleButton[] button1 : buttons) {
                 for (JToggleButton button : button1) {
                     button.setBackground(panel.getDuoRed());

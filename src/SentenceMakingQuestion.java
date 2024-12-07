@@ -71,7 +71,6 @@ public class SentenceMakingQuestion extends Question implements ItemListener, Ac
     }
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==checkButton){
-            System.out.println(formedWord.getText());
             gameScreen.continueButton.setEnabled(true);
             if(formedWord.getText().equalsIgnoreCase(" "+answer)){
                 for(JToggleButton[] buttons1 : buttons){
@@ -84,7 +83,7 @@ public class SentenceMakingQuestion extends Question implements ItemListener, Ac
                 gameScreen.continueButton.setBackground(panel.getDuoGreen());
                 checkButton.setBackground(panel.getDuoGreen());
                 checkButton.setEnabled(false);
-                this.score = true;
+                gameScreen.score++;
             }
             else{
                 for(JToggleButton[] buttons1 : buttons){
