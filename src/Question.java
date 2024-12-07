@@ -5,6 +5,8 @@ public class Question {
     Panel panel;
     GameScreen gameScreen;
     boolean score = false;
+
+    String type;
     public void setQuestion(String question){
         this.question.setText(question);
     }

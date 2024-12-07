@@ -2,13 +2,17 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 public class UserScreen implements ActionListener{
     Panel panel;
 
     private final JTextField userName;
     private final JButton userButton;
+
+    JLabel pageTitle;    
 
     public UserScreen(Panel panel){
         this.panel = panel;
@@ -27,10 +31,16 @@ public class UserScreen implements ActionListener{
         userButton.setBorderPainted(false);
         userButton.setFont(panel.getFont().deriveFont(18f));
         userButton.addActionListener(this);
+
+        pageTitle = new JLabel("RotLingo", SwingConstants.CENTER);
+        pageTitle.setBounds(20, 150, 360, 100);
+        pageTitle.setFont(panel.getFont().deriveFont(60f));
+        pageTitle.setForeground(Color.white);
     }
     public void addComponents(){
         panel.add(userButton);
         panel.add(userName);
+        panel.add(pageTitle);
     }
     @Override
     public void actionPerformed(ActionEvent e) {

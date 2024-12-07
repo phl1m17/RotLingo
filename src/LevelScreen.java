@@ -2,6 +2,8 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 public class LevelScreen implements ActionListener{
     Panel panel;
@@ -9,6 +11,9 @@ public class LevelScreen implements ActionListener{
     boolean[] levelsFinished = {false, false, false, false, false, false};
 
     JButton[] levels = new JButton[6];
+
+    JLabel pageTitle;
+
     public LevelScreen(Panel panel) {
         this.panel = panel;
         for(int i = 0; i<levels.length; i++){
@@ -22,6 +27,10 @@ public class LevelScreen implements ActionListener{
             levels[i].setForeground(Color.white);
             levels[i].addActionListener(this);
         }
+        pageTitle = new JLabel("Levels", SwingConstants.CENTER);
+        pageTitle.setBounds(20, 70, 360, 50);
+        pageTitle.setFont(panel.getFont().deriveFont(40f));
+        pageTitle.setForeground(Color.white);
     }
     public void addComponents(){
         for (int i = 0; i<levels.length; i++) {
@@ -29,6 +38,7 @@ public class LevelScreen implements ActionListener{
             panel.add(levels[i]);
             levels[i].setVisible(true);
         }
+        panel.add(pageTitle);
     }
     @Override
     public void actionPerformed(ActionEvent e) {

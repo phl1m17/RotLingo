@@ -33,6 +33,8 @@ public class SoundMultipleChoiceQuestion extends Question implements ActionListe
         clip = AudioSystem.getClip();  
         clip.open(audioInputStream);
 
+        type = "Sound Multiple Choice";
+
         for(int i = 0; i<buttons.length;i++){
             buttons[i] = new JButton(options[i]);
             buttons[i].setBounds((i<2?((i+1)):(i<4?(i-1):(i-3)))*195-172, (i<2?70:(i<4?150:390))+350, 165, 60);

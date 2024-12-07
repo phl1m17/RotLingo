@@ -30,6 +30,8 @@ public class SentenceMakingQuestion extends Question implements ItemListener, Ac
         this.options = options;
         this.answer = answer;
 
+        type = "form sentence";
+
         for(int i = 0; i<buttons.length;i++){
             for(int j = 0; j<buttons[i].length; j++){
                 buttons[i][j] = new JToggleButton(options[i][j]);

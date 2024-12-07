@@ -11,6 +11,7 @@ import javax.swing.Timer;
 public class MatchingQuestion extends Question implements ItemListener{
     JToggleButton[][] buttons = new JToggleButton[2][5];
 
+
     String[][] options = new String[2][5];
     String[][] answers = new String[2][5];
     boolean[][] buttonDone = {{false,false,false,false,false},{false,false,false,false,false}};
@@ -26,6 +27,8 @@ public class MatchingQuestion extends Question implements ItemListener{
             this.options[i] = answers[i].clone();
         }
         shuffle(this.options);
+
+        type = "Match";
 
         for(int i = 0; i<buttons.length;i++){
             for(int j = 0; j<buttons[i].length; j++){

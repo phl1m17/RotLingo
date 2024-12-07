@@ -54,7 +54,7 @@ public final class GameScreen implements ActionListener{
         addComponents();
     }
     public void addComponents(){
-        questions.get(questionCount).setQuestion("Question " + (questionCount+1));
+        questions.get(questionCount).setQuestion("Question " + (questionCount+1) + " (" + questions.get(questionCount).type + ")");
         questions.get(questionCount).addComponents();
         continueButton.setEnabled(false);
         panel.add(continueButton);
