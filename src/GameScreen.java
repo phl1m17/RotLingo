@@ -1,17 +1,15 @@
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-
-import java.awt.Color;
 
 public final class GameScreen implements ActionListener{
     int questionCount = 0;
@@ -42,8 +40,15 @@ public final class GameScreen implements ActionListener{
         scoreLabel.setFont(panel.getFont().deriveFont(40f));
         scoreLabel.setForeground(Color.white);
     }
-    public void levelStart(){
-        level1();
+    public void levelStart(int level){
+        switch(level){
+            case 2:
+                level1();
+                break;
+            case 3:
+                level2();
+                break;
+        }
     }
     public void level1(){
         questions.clear();
@@ -62,6 +67,21 @@ public final class GameScreen implements ActionListener{
         questions.add(new SentenceMakingQuestion(panel, this, "Brampton mandem be dodgy", opts3, "Brampton people are shady"));
         addComponents();
     }
+    public void level2(){
+        questions.clear();
+        String[] opts = {"Cool Points", "Older Male", "Not Lying", "Charisma"};
+        String[] opts1 = {"reality", "vibe level", "Tommy", "standard"};
+        String[][] opts2 = {{"Aura", "Unc", "No Cap", "Rizz", "Sigma"},{"Cool Points", "Older Male", "Not Lying", "Charisma", "Cool Person"}};
+        String[][] opts3 = {{"Brampton", "are", "people", "can"},{"insane", "crazy", "is", "shady"}};
+        
+        questions.add(new SentenceMakingQuestion(panel, this, "Brampton mandem be dodgy", opts3, "Brampton people are shady"));
+        questions.add(new MatchingQuestion(panel, this, opts2));
+        questions.add(new MultipleChoiceQuestion(panel, this, "Unc", opts1, 2));
+        try {
+            questions.add(new SoundMultipleChoiceQuestion(panel, this, opts, 3, "src/Sounds/Rizz.wav"));
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {}
+        addComponents();
+    }
     public void addComponents(){
         questions.get(questionCount).setQuestion("Question " + (questionCount+1) + " (" + questions.get(questionCount).type + ")");
         questions.get(questionCount).addComponents();
@@ -76,6 +96,7 @@ public final class GameScreen implements ActionListener{
                 panel.levelScreen.levelsFinished[panel.getGamePhase()-2] = true;
                 panel.changePhase(1);
                 questionCount = 0;
+                score = 0;
             }
             else if(questionCount==questions.size()-1){
                 panel.removeAll();

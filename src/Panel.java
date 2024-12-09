@@ -79,7 +79,7 @@ public class Panel extends JPanel implements Runnable{
             levelScreen.addComponents(); 
         }
         else if(gamePhase > 1){
-            gameScreen.levelStart();
+            gameScreen.levelStart(phase);
             gameScreen.addComponents();
         }
     }
