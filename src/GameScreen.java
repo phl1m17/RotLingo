@@ -52,19 +52,44 @@ public final class GameScreen implements ActionListener{
     }
     public void level1(){
         questions.clear();
-        String[] opts = {"Cool Points", "Older Male", "Not Lying", "Charisma"};
+        // Words To Teach: Unc, Rizz, Aura, SIMP 
+        String[] opts1 = {"Charisma", "Older Male", "Vibe", "Overly Devoted"}; // Sound
+        String[] opts2 = {"Overly Devoted", "Vibe", "Older Male", "Charisma"}; // Multiple Choice
+        String[][] opts3 = {{"gives", "Unc", "travels", "stories"},{"insane", "crazy", "is", "shady"}};questions.add(new MatchingQuestion(panel, this, opts3)); // Sentence Making
+        String[][] opts4 = {{"travels", "advice", "stories", "gives"}, {"Unc", "learns", "great", "always"}}; // Matching
+        String[] opts5 = {"Vibe", "Overly Devoted", "Charisma", "Older Male"}; // Multiple Choice
+        String[][] opts6 = {{"wins", "over", "rizz", "people"}, {"His", "charm", "always", "smooth"}}; // Sentence Making
+        String[] opts7 = {"Vibe", "Older Male", "Overly Devoted", "Charisma"};
+        String [] opts8 = {"Overly Devoted", "Vibe", "Charisma", "Older Male"};
+
+        // Question 1
+        questions.add(new MultipleChoiceQuestion(panel, this, "Unc", opts2, 2));
+        
+        // Question 2
         try {
-            questions.add(new SoundMultipleChoiceQuestion(panel, this, opts, 3, "src/Sounds/Rizz.wav"));
+            questions.add(new SoundMultipleChoiceQuestion(panel, this, opts1, 1, "src/Sounds/Unc.wav"));
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {}
 
-        String[] opts1 = {"reality", "vibe level", "Tommy", "standard"};
-        questions.add(new MultipleChoiceQuestion(panel, this, "Unc", opts1, 2));
-
-        String[][] opts2 = {{"Aura", "Unc", "No Cap", "Rizz", "Sigma"},{"Cool Points", "Older Male", "Not Lying", "Charisma", "Cool Person"}};
-        questions.add(new MatchingQuestion(panel, this, opts2));
+        // Question 3
+        questions.add(new SentenceMakingQuestion(panel, this, "My older friend always give great advice", opts4, "Unc always gives great advice"));
         
-        String[][] opts3 = {{"Brampton", "are", "people", "can"},{"insane", "crazy", "is", "shady"}};
-        questions.add(new SentenceMakingQuestion(panel, this, "Brampton mandem be dodgy", opts3, "Brampton people are shady"));
+        // Question 4
+        questions.add(new MultipleChoiceQuestion(panel, this, "Rizz", opts5, 2));
+        
+        // Question 5
+        questions.add(new SentenceMakingQuestion(panel, this, "His charisma always wins people over.", opts6, "His rizz always wins people over"));
+
+        // Question 6
+        questions.add(new MatchingQuestion(panel, this, opts3));
+
+        // Question 7
+        try {
+            questions.add(new SoundMultipleChoiceQuestion(panel, this, opts7, 3, "src/Sounds/Rizz.wav"));
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {}
+
+        // Question 8
+        questions.add(new MultipleChoiceQuestion(panel, this, "SIMP", opts8, 0));
+
         addComponents();
     }
     public void level2(){
