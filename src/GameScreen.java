@@ -105,7 +105,11 @@ public final class GameScreen implements ActionListener{
         String[] opts7 = {"insane", "Not Lying", "Cool person", "Generic Behaviour"}; // NPC energy
         String[] opts8 = {"Charisma", "standard", "shady", "Restrict Access"}; // Dodgy
 
-        String[][] opts9 = {{"Aura", "Unc", "No Cap", "Rizz", "Sigma"},{"Cool Points", "Older Male", "Not Lying", "Charisma", "Cool Person"}};
+        String[][] opts9 = {
+            {"Gatekeep", "Mandem", "NPC energy", "Dodgy", "Unc"}, // Slang terms
+            {"Restrict Access", "people(Male)", "Generic Behaviour", "shady", "Older Male"} // Translations
+        };
+        
         String[][] opts10 = {{"Brampton", "are", "people", "can"},{"insane", "crazy", "is", "shady"}};
         
         questions.add(new MultipleChoiceQuestion(panel, this, "Gatekeep", opts1, 1));
@@ -126,9 +130,8 @@ public final class GameScreen implements ActionListener{
             questions.add(new SoundMultipleChoiceQuestion(panel, this, opts8, 2, "src/Sounds/Dodgy.wav"));
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {}
 
-
-        //questions.add(new SentenceMakingQuestion(panel, this, "Brampton mandem be dodgy", opts3, "Brampton people are shady"));
-        //questions.add(new MatchingQuestion(panel, this, opts2));        
+        questions.add(new MatchingQuestion(panel, this, opts9));     
+        questions.add(new SentenceMakingQuestion(panel, this, "Brampton mandem be dodgy", opts10, "Brampton people are shady"));  
         addComponents();
     }
     public void addComponents(){
