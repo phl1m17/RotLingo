@@ -5,4 +5,3 @@ s
 a
 sadik
 g
-x
