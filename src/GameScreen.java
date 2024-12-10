@@ -52,11 +52,11 @@ public final class GameScreen implements ActionListener{
     }
     public void level1(){
         questions.clear();
-        // Words To Teach: Unc, Rizz, Aura, SIMP 
+        // Words To Teach: Unc, Rizz, Aura, SIMP, No Cap
         String[] opts1 = {"Charisma", "Older Male", "Vibe", "Overly Devoted"}; // Sound
         String[] opts2 = {"Overly Devoted", "Vibe", "Older Male", "Charisma"}; // Multiple Choice
-        String[][] opts3 = {{"gives", "Unc", "travels", "stories"},{"insane", "crazy", "is", "shady"}};questions.add(new MatchingQuestion(panel, this, opts3)); // Sentence Making
-        String[][] opts4 = {{"travels", "advice", "stories", "gives"}, {"Unc", "learns", "great", "always"}}; // Matching
+        String[][] opts3 = {{"Rizz", "Unc", "Aura", "Simp", "No Cap"},{"Charisma", "Older Male", "Vibe", "Overly Devoted","Not Lying"}}; // Matching
+        String[][] opts4 = {{"travels", "advice", "stories", "gives"}, {"Unc", "learns", "great", "always"}}; // Sentence Making
         String[] opts5 = {"Vibe", "Overly Devoted", "Charisma", "Older Male"}; // Multiple Choice
         String[][] opts6 = {{"wins", "over", "rizz", "people"}, {"His", "charm", "always", "smooth"}}; // Sentence Making
         String[] opts7 = {"Vibe", "Older Male", "Overly Devoted", "Charisma"};
@@ -71,13 +71,13 @@ public final class GameScreen implements ActionListener{
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {}
 
         // Question 3
-        questions.add(new SentenceMakingQuestion(panel, this, "My older friend always give great advice", opts4, "Unc always gives great advice"));
+        questions.add(new SentenceMakingQuestion(panel, this, "<html> My older friend always<br> give great advice </html>", opts4, "Unc always gives great advice"));
         
         // Question 4
         questions.add(new MultipleChoiceQuestion(panel, this, "Rizz", opts5, 2));
         
         // Question 5
-        questions.add(new SentenceMakingQuestion(panel, this, "His charisma always wins people over.", opts6, "His rizz always wins people over"));
+        questions.add(new SentenceMakingQuestion(panel, this, "<html>His charisma always <br> wins people over </html>", opts6, "His rizz always wins people over"));
 
         // Question 6
         questions.add(new MatchingQuestion(panel, this, opts3));
@@ -86,23 +86,52 @@ public final class GameScreen implements ActionListener{
         try {
             questions.add(new SoundMultipleChoiceQuestion(panel, this, opts7, 3, "src/Sounds/Rizz.wav"));
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {}
+
+        // Question 8
         questions.add(new MultipleChoiceQuestion(panel, this, "SIMP", opts8, 0));
 
         addComponents();
     }
     public void level2(){
+        //Words taught: Gatekeep, Mandem, NPC Energy, dodgy
         questions.clear();
-        String[] opts = {"Cool Points", "Older Male", "Not Lying", "Charisma"};
-        String[] opts1 = {"reality", "vibe level", "Tommy", "standard"};
-        String[][] opts2 = {{"Aura", "Unc", "No Cap", "Rizz", "Sigma"},{"Cool Points", "Older Male", "Not Lying", "Charisma", "Cool Person"}};
-        String[][] opts3 = {{"Brampton", "are", "people", "can"},{"insane", "crazy", "is", "shady"}};
+        String[] opts1 = {"Older Male", "Restrict Access", "people(Male)", "Charisma"}; // Gatekeep
+        String[] opts2 = {"shady", "Not Lying", "Restrict Access", "people(Male)"}; // Mandem
+        String[] opts3 = {"Generic Behaviour", "Cool points", "Cool person", "Older Male"}; // NPC energy
+        String[] opts4 = {"shady", "crazy", "insane", "standard"}; // Dodgy
         
-        questions.add(new SentenceMakingQuestion(panel, this, "Brampton mandem be dodgy", opts3, "Brampton people are shady"));
-        questions.add(new MatchingQuestion(panel, this, opts2));
-        questions.add(new MultipleChoiceQuestion(panel, this, "Unc", opts1, 2));
+        String[] opts5 = {"Restrict Access", "shady", "Generic Behaviour", "crazy"}; // Gatekeep
+        String[] opts6 = {"Older Male", "Restrict Access", "people(Male)", "Cool points"}; // Mandem
+        String[] opts7 = {"insane", "Not Lying", "Cool person", "Generic Behaviour"}; // NPC energy
+        String[] opts8 = {"Charisma", "standard", "shady", "Restrict Access"}; // Dodgy
+
+        String[][] opts9 = {
+            {"Gatekeep", "Mandem", "NPC energy", "Dodgy", "Unc"}, // Slang terms
+            {"Restrict Access", "people(Male)", "Generic Behaviour", "shady", "Older Male"} // Translations
+        };
+        
+        String[][] opts10 = {{"Brampton", "are", "people", "can"},{"insane", "crazy", "is", "shady"}};
+        
+        questions.add(new MultipleChoiceQuestion(panel, this, "Gatekeep", opts1, 1));
+        questions.add(new MultipleChoiceQuestion(panel, this, "Mandem", opts2, 3));
+        questions.add(new MultipleChoiceQuestion(panel, this, "NPC Energy", opts3, 0));
+        questions.add(new MultipleChoiceQuestion(panel, this, "Dodgy", opts4, 0));
+
         try {
-            questions.add(new SoundMultipleChoiceQuestion(panel, this, opts, 3, "src/Sounds/Rizz.wav"));
+            questions.add(new SoundMultipleChoiceQuestion(panel, this, opts5, 0, "src/Sounds/Gatekeep.wav"));
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {}
+        try {
+            questions.add(new SoundMultipleChoiceQuestion(panel, this, opts6, 2, "src/Sounds/Mandem.wav"));
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {}
+        try {
+            questions.add(new SoundMultipleChoiceQuestion(panel, this, opts7, 3, "src/Sounds/NPC Energy.wav"));
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {}
+        try {
+            questions.add(new SoundMultipleChoiceQuestion(panel, this, opts8, 2, "src/Sounds/Dodgy.wav"));
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {}
+
+        questions.add(new MatchingQuestion(panel, this, opts9));     
+        questions.add(new SentenceMakingQuestion(panel, this, "Brampton mandem be dodgy", opts10, "Brampton people are shady"));  
         addComponents();
     }
     public void addComponents(){
