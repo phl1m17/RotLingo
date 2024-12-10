@@ -86,8 +86,6 @@ public final class GameScreen implements ActionListener{
         try {
             questions.add(new SoundMultipleChoiceQuestion(panel, this, opts7, 3, "src/Sounds/Rizz.wav"));
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {}
-
-        // Question 8
         questions.add(new MultipleChoiceQuestion(panel, this, "SIMP", opts8, 0));
 
         addComponents();
