@@ -146,6 +146,7 @@ public final class GameScreen implements ActionListener{
             continueButton.setBackground(panel.getDuoNavyBlue());
             if(questionCount==questions.size()){
                 panel.levelScreen.levelsFinished[panel.getGamePhase()-2] = true;
+                panel.usernameSaver.updateLevels(panel.getGamePhase()-2);
                 panel.changePhase(1);
                 questionCount = 0;
                 score = 0;

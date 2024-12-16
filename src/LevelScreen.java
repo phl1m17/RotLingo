@@ -1,6 +1,8 @@
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -16,6 +18,7 @@ public class LevelScreen implements ActionListener{
 
     public LevelScreen(Panel panel) {
         this.panel = panel;
+
         for(int i = 0; i<levels.length; i++){
             levels[i] = new JButton(String.valueOf((i+1)));
             levels[i].setBounds((i<2?((i+1)):(i<4?(i-1):(i-3)))*150-70, (i<2?70:(i<4?230:390))+100, 100, 100);
@@ -32,7 +35,15 @@ public class LevelScreen implements ActionListener{
         pageTitle.setFont(panel.getFont().deriveFont(40f));
         pageTitle.setForeground(Color.white);
     }
+
+    public void updateLevel(){
+        ArrayList<Integer> a = panel.usernameSaver.getLevelsFinished();
+        for(int i = 0; i<a.size(); i++){
+            levelsFinished[a.get(i)] = true;
+        }
+    }
     public void addComponents(){
+        updateLevel();
         for (int i = 0; i<levels.length; i++) {
             levels[i].setBackground(levelsFinished[i]?panel.getDuoGreen():panel.getDuoNavyBlue());
             panel.add(levels[i]);
