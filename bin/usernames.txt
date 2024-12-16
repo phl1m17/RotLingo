@@ -1,8 +1,14 @@
 shams
+<<<<<<< HEAD
+tommy
+s
+a
+sadik
+g
+p
+=======
 2 
 phil
 5 0 
 shammychandi
 1 
-a
-0 
