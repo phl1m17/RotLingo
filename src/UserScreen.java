@@ -49,9 +49,6 @@ public class UserScreen implements ActionListener{
             System.out.println("Entered username: " + enteredUsername);
             panel.usernameSaver.addUsername(enteredUsername);
             panel.changePhase(1);
-            if(panel.usernameSaver.getList().contains(userName.getText())){
-                panel.gameScreen.levels = panel.levelSaver.level(userName.getText());
-            }
         }
     }
 }

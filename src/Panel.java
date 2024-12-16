@@ -21,13 +21,13 @@ public class Panel extends JPanel implements Runnable{
     private final Color duoNavyBlue = new Color(24, 32, 39);
     private final Color duoBlue = new Color(28, 176, 246);
 
+    UsernameSaver usernameSaver = new UsernameSaver();
+
     //Screens
     UserScreen userScreen = new UserScreen(this);
     LevelScreen levelScreen = new LevelScreen(this);
     GameScreen gameScreen = new GameScreen(this);
 
-    UsernameSaver usernameSaver = new UsernameSaver();
-    LevelSaver levelSaver = new LevelSaver();
     Thread gameThread;
 
     //getters
