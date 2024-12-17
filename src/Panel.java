@@ -31,7 +31,6 @@ public class Panel extends JPanel implements Runnable{
     Thread gameThread;
 
     //getters
-    @Override
     public Font getFont(){
         return font;
     }

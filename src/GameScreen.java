@@ -83,13 +83,13 @@ public final class GameScreen implements ActionListener{
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {}
 
         // Question 3
-        questions.add(new SentenceMakingQuestion(panel, this, "<html> My older friend always<br> give great advice </html>", opts4, "Unc always gives great advice"));
+        questions.add(new SentenceMakingQuestion(panel, this, "My older friend always gives great advice", opts4, "Unc always gives great advice"));
         
         // Question 4
         questions.add(new MultipleChoiceQuestion(panel, this, "Rizz", opts5, 2));
         
         // Question 5
-        questions.add(new SentenceMakingQuestion(panel, this, "<html>His charisma always <br> wins people over </html>", opts6, "His rizz always wins people over"));
+        questions.add(new SentenceMakingQuestion(panel, this, "His charisma always wins people over", opts6, "His rizz always wins people over"));
 
         // Question 6
         questions.add(new MatchingQuestion(panel, this, opts3));
@@ -167,13 +167,13 @@ public final class GameScreen implements ActionListener{
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {}
 
         // Question 3
-        questions.add(new SentenceMakingQuestion(panel, this, "<html> You are too good,<br> go outside</html>", opts4, "You are too good, touch grass"));
+        questions.add(new SentenceMakingQuestion(panel, this, "You are too good, go outside", opts4, "You are too good, touch grass"));
         
         // Question 4
         questions.add(new MultipleChoiceQuestion(panel, this, "Slay", opts5, 0));
         
         // Question 5
-        questions.add(new SentenceMakingQuestion(panel, this, "<html>He is the best<html>", opts6, "He is the Goat"));
+        questions.add(new SentenceMakingQuestion(panel, this, "He is the best", opts6, "He is the Goat"));
 
         // Question 6
         questions.add(new MatchingQuestion(panel, this, opts3));
@@ -229,7 +229,7 @@ public final class GameScreen implements ActionListener{
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {}
 
         questions.add(new MatchingQuestion(panel, this, opts9));     
-        questions.add(new SentenceMakingQuestion(panel, this, "<html>He is Sigma</html>", opts10, "He is a lone wolf"));  
+        questions.add(new SentenceMakingQuestion(panel, this, "He is Sigma", opts10, "He is a lone wolf"));  
 
         addComponents();
     }

@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -16,7 +17,7 @@ public class SentenceMakingQuestion extends Question implements ItemListener, Ac
     String[][] options;
     String answer;
 
-    JLabel word;
+    ArrayList<JLabel> word = new ArrayList<>();
     JLabel formedWord;
     
     boolean[][] added = {{false,false,false,false},{false,false,false,false}};
@@ -50,10 +51,12 @@ public class SentenceMakingQuestion extends Question implements ItemListener, Ac
         question.setFont(panel.getFont().deriveFont(20f));
         question.setForeground(Color.white);
         
-        this.word = new JLabel(word, SwingConstants.CENTER);
-        this.word.setBounds(panel.screenWidth/2-360/2, panel.screenHeight/2-150, 360, 50);
-        this.word.setFont(panel.getFont().deriveFont(20f));
-        this.word.setForeground(Color.white);
+        this.word.add(new JLabel(word, SwingConstants.CENTER));
+        this.word.get(0).setBounds(panel.screenWidth/2-360/2, panel.screenHeight/2-150, 360, 50);
+        this.word.get(0).setFont(panel.getFont().deriveFont(20f));
+        this.word.get(0).setForeground(Color.white);
+
+        splitLines(this.word.get(0), 20);
 
         formedWord = new JLabel("", SwingConstants.CENTER);
         formedWord.setBounds(panel.screenWidth/2-360/2, panel.screenHeight/2-50, 360, 50);
@@ -68,6 +71,22 @@ public class SentenceMakingQuestion extends Question implements ItemListener, Ac
         checkButton.setOpaque(true);
         checkButton.setBorder(BorderFactory.createLineBorder(panel.getDuoNavyBlue(), 4));
         checkButton.addActionListener(this);
+    }
+    public void splitLines(JLabel jl, int fontSize){
+        //1.7 ratio to pixel size each char of the font takes up
+        fontSize/=1.7;
+        System.out.println(jl.getWidth());
+        if(fontSize*jl.getText().length()>jl.getWidth()){
+            int cutOff = jl.getText().substring(0, jl.getWidth()/fontSize).lastIndexOf(" ");
+            String line1 = jl.getText().substring(0, cutOff);
+            String line2 = jl.getText().substring(cutOff);
+            jl.setText(line1);
+            word.add(new JLabel(line2, SwingConstants.CENTER));
+            word.get(word.size()-1).setBounds(jl.getX(), jl.getY()+fontSize+10, jl.getWidth(), jl.getHeight());
+            word.get(word.size()-1).setFont(panel.getFont().deriveFont(20f));
+            word.get(word.size()-1).setForeground(Color.white);
+            splitLines(word.get(word.size()-1), fontSize);
+        }
     }
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==checkButton){
@@ -119,7 +138,9 @@ public class SentenceMakingQuestion extends Question implements ItemListener, Ac
                 panel.add(b);
             }
         }
-        panel.add(word);
+        for(JLabel i: word){
+            panel.add(i);
+        }
         panel.add(formedWord);
         panel.add(question);
         panel.add(checkButton);

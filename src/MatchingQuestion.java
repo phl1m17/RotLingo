@@ -36,7 +36,7 @@ public class MatchingQuestion extends Question implements ItemListener{
                 buttons[i][j].setBounds(15+i*190, 120+j*80, 180, 60);
                 buttons[i][j].setBackground(panel.getDuoNavyBlue());
                 buttons[i][j].setForeground(Color.white);
-                buttons[i][j].setFont(panel.getFont().deriveFont(25f));
+                buttons[i][j].setFont(panel.getFont().deriveFont(15f));
                 buttons[i][j].setOpaque(true);
                 buttons[i][j].setBorder(BorderFactory.createLineBorder(panel.getDuoNavyBlue(), 4));
                 buttons[i][j].setForeground(Color.white);
