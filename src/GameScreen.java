@@ -229,26 +229,91 @@ public final class GameScreen implements ActionListener{
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {}
 
         questions.add(new MatchingQuestion(panel, this, opts9));     
-        questions.add(new SentenceMakingQuestion(panel, this, "He is Sigma", opts10, "He is a lone wolf"));  
-
+        questions.add(new SentenceMakingQuestion(panel, this, "He is Sigma", opts10, "He is a lone wolf"));
         addComponents();
     }
     public void level5(){
         questions.clear();
         String[] opts1 = {"Energetic", "Generic Behavior", "Charisma", "Delusional"}; 
-        String[][] opts2 = {{"Energetic", "Charisma", "Delusional", "Generic Behavior"}, {"Generic Behavior", "Energetic", "Delusional", "Charisma"}}; 
-        String[][] opts3 = {{"Energetic", "Generic Behavior", "Delusional", "Charisma"}, {"Charisma", "Energetic", "Generic Behavior", "Delusional"}}; 
-        String[][] opts4 = {{"Energetic", "Generic Behavior", "Delusional", "Charisma"}, {"Charisma", "Delusional", "Energetic", "Generic Behavior"}}; 
-        String[] opts5 = {"Energetic", "Generic Behavior", "Charisma", "Delusional"}; 
-        String[] opts6 = {"Generic Behavior", "Charisma", "Delusional", "Energetic"}; 
-        String[][] opts7 = {{"Delusional", "Energetic", "Charisma", "Generic Behavior"},{"Generic Behavior", "Charisma", "Energetic", "Delusional"}}; 
-        String[][] opts8 = {{"Charisma", "Generic Behavior", "Delusional", "Energetic"}, {"Energetic", "Delusional", "Generic Behavior", "Charisma"}}; 
+        String[] opts2 = {"Delusional", "Charisma", "Generic Behavior", "Energetic"}; 
+        String[] opts3 = {"Generic Behavior", "Charisma", "Delusional", "Energetic"};
+        String[] opts4 = {"Generic Behavior", "Charisma", "Energetic", "Delusional"}; 
+        String[] opts5 = {"Energetic", "Generic Behavior", "Delusional", "Charisma"}; 
+        String[][] opts6 = {{"is", "Rizz", "he", "wins"},{"too", "over", "everyone", "strong,"}}; 
+        String[][] opts7 = {{"grass", "generic", "He", "skibidi"}, {"has", "delulu", "behavior", "rizz"}}; 
+        String[][] opts8 = {{"Skibidi", "NPC Energy", "Rizz", "Delulu", "Slay"},{"Energetic", "Generic Behavior", "Charisma", "Delusional","Do Amazing"}};
+        // Question 1 (Sound Question)
+        try {
+            questions.add(new SoundMultipleChoiceQuestion(panel, this, opts1, 0, "src/Sounds/Skibidi.wav"));
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {}
 
+        // Question 2 (Sound Question)
+        try {
+            questions.add(new SoundMultipleChoiceQuestion(panel, this, opts2, 1, "src/Sounds/Rizz.wav"));
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {}
 
+        // Question 3 (Sound Question)
+        try {
+            questions.add(new SoundMultipleChoiceQuestion(panel, this, opts3, 2, "src/Sounds/Delulu.wav"));
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {}
+
+        // Question 4 (Multiple Choice)
+        questions.add(new MultipleChoiceQuestion(panel, this, "Delulu", opts4, 3));
+
+        // Question 5 (Multiple Choice)
+        questions.add(new MultipleChoiceQuestion(panel, this, "Rizz", opts5, 3));
+
+        // Question 6 (Sentence Making)
+        questions.add(new SentenceMakingQuestion(panel, this, "Charisma is too strong, he wins everyone over.", opts6, "Rizz is too strong, he wins everyone over"));
+
+        // Question 7 (Sentence Making)
+        questions.add(new SentenceMakingQuestion(panel, this, "He has NPC Energy", opts7, "He has generic behavior"));
+
+        // Question 8 (Matching Question)
+        questions.add(new MatchingQuestion(panel, this, opts8));
         addComponents();
     }
     public void level6(){
+        
+        questions.clear();
+        String[] opts1 = {"older male", "isn't", "shady", "people (Male)"}; 
+        String[] opts2 = {"shady", "isn't", "people (Male)", "older male"}; 
+        String[] opts3 = {"isn't", "shady", "older male", "people (Male)"};
+        String[] opts4 = {"shady", "people (Male)", "older male", "isn't"}; 
+        String[] opts5 = {"older male", "people (Male)", "shady", "isn't"}; 
+        String[][] opts6 = {{"Mandem", "init", "Why", "shady"}, {"are", "gatekeeping?", "you", "rizz"}}; 
+        String[][] opts7 = {{"is,", "shady", "init", "what"}, {"are", "it", "It", "is"}}; 
+        String[][] opts8 = {{"Mandem", "dodgy", "init", "unc", "gatekeep"}, {"people (Male)", "shady", "isn't", "older male", "restrict access"}};
+        // Question 1 (Sound Question)
+        try {
+            questions.add(new SoundMultipleChoiceQuestion(panel, this, opts1, 3, "src/Sounds/Mandem.wav"));
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {}
 
+        // Question 2 (Sound Question)
+        try {
+            questions.add(new SoundMultipleChoiceQuestion(panel, this, opts2, 0, "src/Sounds/Dodgy.wav"));
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {}
+
+        // Question 3 (Sound Question)
+        try {
+            questions.add(new SoundMultipleChoiceQuestion(panel, this, opts3, 0, "src/Sounds/Init.wav"));
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {}
+
+        // Question 4 (Multiple Choice)
+        questions.add(new MultipleChoiceQuestion(panel, this, "Mandem", opts4, 1));
+
+        // Question 5 (Multiple Choice)
+        questions.add(new MultipleChoiceQuestion(panel, this, "Dodgy", opts5, 2));
+
+        // Question 6 (Sentence Making)
+        questions.add(new SentenceMakingQuestion(panel, this, "Why are you restricting access?", opts6, "Why are you gatekeeping?"));
+
+        // Question 7 (Sentence Making)
+        questions.add(new SentenceMakingQuestion(panel, this, "It is what it is, isn't", opts7, "It is what it is, init"));
+
+        // Question 8 (Matching Question)
+        questions.add(new MatchingQuestion(panel, this, opts8));
+        addComponents();
     }
     public void addComponents(){
         questions.get(questionCount).setQuestion("Question " + (questionCount+1) + " (" + questions.get(questionCount).type + ")");

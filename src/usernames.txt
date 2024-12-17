@@ -1,18 +1,2 @@
-shams
-2 
 phil
-5 0 
-shammychandi
-1 
-a
-0 
-s
-
-bib
-
-enter a usernam
-
-ss
-
-d
-
+0 1 2 3 4 5 
