@@ -192,20 +192,20 @@ public final class GameScreen implements ActionListener{
         // Words taught: Init, Cheeky, Delulu, Skibidi, Sigma
         questions.clear();
 
-        String[] opts1 = {"Isn't", "Exaggerated", "Independent", "Lone Wolf"}; // Init
+        String[] opts1 = {"Isn't it", "Exaggerated", "Independent", "Lone Wolf"}; // Init
         String[] opts2 = {"Bold", "Mischievous", "Shady", "Not Lying"}; // Cheeky
         String[] opts3 = {"Delusional", "Not Lying", "Shady", "Standard"}; // Delulu
-        String[] opts4 = {"Energetic", "Insane", "Isn't", "Generic Behaviour"}; // Skibidi
+        String[] opts4 = {"Energetic", "Insane", "Isn't it", "Generic Behaviour"}; // Skibidi
 
-        String[] opts5 = {"Exaggerated", "Isn't", "Lone Wolf", "Independent"}; // Init
+        String[] opts5 = {"Exaggerated", "Isn't it", "Lone Wolf", "Independent"}; // Init
         String[] opts6 = {"Not Lying", "Shady", "Bold", "Mischievous"}; // Cheeky
         String[] opts7 = {"Delusional", "Shady", "Not Lying", "Standard"}; // Delulu
-        String[] opts8 = {"Energetic", "Insane", "Generic Behaviour", "Isn't"}; // Skibidi
+        String[] opts8 = {"Energetic", "Insane", "Generic Behaviour", "Isn't it"}; // Skibidi
 
 
         String[][] opts9 = {
             {"Init", "Cheeky", "Delulu", "Skibidi", "Sigma"}, // Slang terms
-            {"Isn't", "Bold", "Delusional", "Energetic", "Independent"} // Translations
+            {"Isn't it", "Bold", "Delusional", "Energetic", "Independent"} // Translations
         };
 
         String[][] opts10 = {{"is", "Shady", "He", "Mischievous", "Playful"}, {"wolf", "Bold", "lone", "a"}};
@@ -276,11 +276,11 @@ public final class GameScreen implements ActionListener{
     public void level6(){
         
         questions.clear();
-        String[] opts1 = {"older male", "isn't", "shady", "people (Male)"}; 
-        String[] opts2 = {"shady", "isn't", "people (Male)", "older male"}; 
-        String[] opts3 = {"isn't", "shady", "older male", "people (Male)"};
-        String[] opts4 = {"shady", "people (Male)", "older male", "isn't"}; 
-        String[] opts5 = {"older male", "people (Male)", "shady", "isn't"}; 
+        String[] opts1 = {"older male", "isn't it", "shady", "people (Male)"}; 
+        String[] opts2 = {"shady", "isn't it", "people (Male)", "older male"}; 
+        String[] opts3 = {"isn't it", "shady", "older male", "people (Male)"};
+        String[] opts4 = {"shady", "people (Male)", "older male", "isn't it"}; 
+        String[] opts5 = {"older male", "people (Male)", "shady", "isn't it"}; 
         String[][] opts6 = {{"Mandem", "init", "Why", "shady"}, {"are", "gatekeeping?", "you", "rizz"}}; 
         String[][] opts7 = {{"is,", "shady", "init", "what"}, {"are", "it", "It", "is"}}; 
         String[][] opts8 = {{"Mandem", "dodgy", "init", "unc", "gatekeep"}, {"people (Male)", "shady", "isn't", "older male", "restrict access"}};
@@ -309,7 +309,7 @@ public final class GameScreen implements ActionListener{
         questions.add(new SentenceMakingQuestion(panel, this, "Why are you restricting access?", opts6, "Why are you gatekeeping?"));
 
         // Question 7 (Sentence Making)
-        questions.add(new SentenceMakingQuestion(panel, this, "It is what it is, isn't", opts7, "It is what it is, init"));
+        questions.add(new SentenceMakingQuestion(panel, this, "It is what it is, isn't it", opts7, "It is what it is, init"));
 
         // Question 8 (Matching Question)
         questions.add(new MatchingQuestion(panel, this, opts8));
