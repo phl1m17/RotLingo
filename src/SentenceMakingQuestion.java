@@ -4,7 +4,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -12,20 +11,30 @@ import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 
 public class SentenceMakingQuestion extends Question implements ItemListener, ActionListener{
+    // making a 2,4 grid of toggleable buttons
     JToggleButton[][] buttons = new JToggleButton[2][4];
 
+    // 2d array of available options
     String[][] options;
+    
+    // String answer
     String answer;
 
+    // formed Sentence
     ArrayList<JLabel> word = new ArrayList<>();
+
+    // visible label of the formed sentence
     JLabel formedWord;
     
+    // boolean value for each button to see if it has been added or not
     boolean[][] added = {{false,false,false,false},{false,false,false,false}};
 
+    // a button to check if your answer is correct
     JButton checkButton;
 
-    //Multiple Choice Type Question
+    //Sentence Making Type Question
     public SentenceMakingQuestion(Panel panel, GameScreen gameScreen, String word, String[][] options, String answer) {
+        // Declaring the variables
         this.panel = panel;
         this.gameScreen = gameScreen;
         this.options = options;
@@ -33,6 +42,7 @@ public class SentenceMakingQuestion extends Question implements ItemListener, Ac
 
         type = "form sentence";
 
+        // setting up the buttons
         for(int i = 0; i<buttons.length;i++){
             for(int j = 0; j<buttons[i].length; j++){
                 buttons[i][j] = new JToggleButton(options[i][j]);
@@ -45,24 +55,29 @@ public class SentenceMakingQuestion extends Question implements ItemListener, Ac
                 buttons[i][j].addItemListener(this);
             }
         }
-
+        
+        // setting up the question label
         question = new JLabel();
         question.setBounds(20, 20, 360, 50);
         question.setFont(panel.getFont().deriveFont(20f));
         question.setForeground(Color.white);
         
+        // setting up the formed sentence label
         this.word.add(new JLabel(word, SwingConstants.CENTER));
         this.word.get(0).setBounds(panel.screenWidth/2-360/2, panel.screenHeight/2-150, 360, 50);
         this.word.get(0).setFont(panel.getFont().deriveFont(20f));
         this.word.get(0).setForeground(Color.white);
 
+        // checking the sentence is too long and split it into different lines
         splitLines(this.word.get(0), 20);
 
+        // setting up the formed sentence
         formedWord = new JLabel("", SwingConstants.CENTER);
         formedWord.setBounds(panel.screenWidth/2-360/2, panel.screenHeight/2-50, 360, 50);
         formedWord.setFont(panel.getFont().deriveFont(12f));
         formedWord.setForeground(Color.white);
 
+        // setting up check button
         checkButton = new JButton("Check");
         checkButton.setBounds(panel.screenWidth/2-100/2, gameScreen.continueButton.getY()-60, 100, 50);
         checkButton.setBackground(panel.getDuoNavyBlue());
@@ -75,7 +90,9 @@ public class SentenceMakingQuestion extends Question implements ItemListener, Ac
     public void splitLines(JLabel jl, int fontSize){
         //1.7 ratio to pixel size each char of the font takes up
         fontSize/=1.7;
-        System.out.println(jl.getWidth());
+
+        // checking if the sentence is too long and split it up into multiple jlabels
+        // if the second one is still to big you split it up into another 2 labels using recursion
         if(fontSize*jl.getText().length()>jl.getWidth()){
             int cutOff = jl.getText().substring(0, jl.getWidth()/fontSize).lastIndexOf(" ");
             String line1 = jl.getText().substring(0, cutOff);
@@ -88,7 +105,10 @@ public class SentenceMakingQuestion extends Question implements ItemListener, Ac
             splitLines(word.get(word.size()-1), fontSize);
         }
     }
+    @Override
     public void actionPerformed(ActionEvent e) {
+        // checks if the check button has been clicked and 
+        // checks if the formed sentence is equal to the answer
         if(e.getSource()==checkButton){
             gameScreen.continueButton.setEnabled(true);
             if(formedWord.getText().equalsIgnoreCase(" "+answer)){
@@ -118,6 +138,8 @@ public class SentenceMakingQuestion extends Question implements ItemListener, Ac
             }
         }
     }
+    // add the button pressed to the formed sentence
+    @Override
     public void itemStateChanged(ItemEvent e) {
         for(int i = 0; i<buttons.length;i++){
             for(int j = 0; j<buttons[i].length; j++){
@@ -132,6 +154,8 @@ public class SentenceMakingQuestion extends Question implements ItemListener, Ac
             }
         }
     }
+    // add all compomponents to the panel
+    @Override
     public void addComponents(){
         for(JToggleButton[] buttons1 : buttons){
             for(JToggleButton b: buttons1){

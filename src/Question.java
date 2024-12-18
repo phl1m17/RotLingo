@@ -1,6 +1,9 @@
 import javax.swing.JLabel;
 
+// Parent Class of all the Question Types
 public class Question {
+    // Initializing all the variables
+
     JLabel question;
     Panel panel;
     GameScreen gameScreen;

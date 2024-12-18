@@ -1,26 +1,30 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.io.File;
 import javax.swing.JPanel;
 
 public class Panel extends JPanel implements Runnable{
+    // Screen Dimensions
     final int screenWidth = 400;
     final int screenHeight = 650;
 
+    // Setting the FPS of the game / How many times it repaints in a second
     private final int FPS = 60;
 
     // 0 = enter username
     // 1 = level screen
+    // 2 = game screen
     private int gamePhase = 0;
 
+    // Initializing default values such as colors and font
     private Font font = importFont();
     private final Color duoGreen = new Color(88,204,2);
     private final Color duoRed = new Color(255,75,75);
     private final Color duoNavyBlue = new Color(24, 32, 39);
     private final Color duoBlue = new Color(28, 176, 246);
 
+    // Creating an instance of the UsernameSaver Class which saves the username and level
     UsernameSaver usernameSaver = new UsernameSaver();
 
     //Screens
@@ -28,6 +32,7 @@ public class Panel extends JPanel implements Runnable{
     LevelScreen levelScreen = new LevelScreen(this);
     GameScreen gameScreen = new GameScreen(this);
 
+    // Declaring a thread object
     Thread gameThread;
 
     //getters
@@ -51,26 +56,36 @@ public class Panel extends JPanel implements Runnable{
     }
     public Font importFont() {
         try {
-            File file = new File("src/FeatherBold.ttf");
+            File file = new File("src/FeatherBold.ttf"); // creating a file object of the font file
+            // creating a font using the .createFont() method which accepts a file and an integer, then you 
+            // also specify the font size using the deriveFont method which accepts a float
             font = Font.createFont(Font.TRUETYPE_FONT, file).deriveFont(12f);
             return font;
         } catch (Exception e) {}
         return null;
     }
+    // Default Constructor
     public Panel() {
+        // sets the dimensions of the JPanel
+        // setPrefferedSize requires a Dimension parameter which 
+        // is why you have a new Dimension() with the width and height
         setPreferredSize(new Dimension(screenWidth,screenHeight));
+        
+        // Setting the Background color for the screen
         setBackground(new Color(34, 42, 51));
-
+        
+        // Allows you to put the buttons in specific coordinates.
         setLayout(null);
+
+        // calling changePhase method with username screen as the 
+        // argument since you want to start off in the username screen
         changePhase(0);
     }
-    @Override
-    public void paintComponent(Graphics g){
-        super.paintComponent(g);
-    }
+    // Change phase method
     public void changePhase(int phase){
-        removeAll();
-        gamePhase = phase;
+        removeAll(); // removing all components added to the JPanel
+        gamePhase = phase; // making gamePhase equal to the argument phase
+        // added the needed components base on the gamePhase
         if(gamePhase == 0){
             userScreen.addComponents();
         }
@@ -78,14 +93,17 @@ public class Panel extends JPanel implements Runnable{
             levelScreen.addComponents(); 
         }
         else if(gamePhase > 1){
-            gameScreen.levelStart(phase);
+            gameScreen.levelStart(gamePhase);
             gameScreen.addComponents();
         }
     }
+    // Start GameThread
     public void startGameThread(){
-        gameThread = new Thread(this);
-        gameThread.start();
+        gameThread = new Thread(this); // Initilizing the gameThread 
+        // with this as in the runnable interface which is implemented in the class
+        gameThread.start(); // .start() is a method in the Thread class
     }
+    // run is an abstract method in the runnable interface
     @Override
     public void run() {
         // DELTA GAME LOOP
