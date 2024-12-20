@@ -107,25 +107,25 @@ public class Panel extends JPanel implements Runnable{
     @Override
     public void run() {
         // DELTA GAME LOOP
-		final double drawInterval = 1000000000/FPS;
-		double delta = 0;
+        // drawInterval determines how much time should pass between frames
+        // It is calculated based on the desired FPS (frames per second)
+		final double drawInterval = 1000000000/FPS; // setting up how many times a second it repaints
+		double delta = 0; // delta keeps track of the accumulated time difference between frames
 		long lastTime = System.nanoTime();
 		while(gameThread.isAlive()) {
+            // Get the current time in nanoseconds
 			long currentTime = System.nanoTime();
-			
+
 			delta += (currentTime-lastTime)/drawInterval; // how much time has passed 
-                //divided by how many times we want to draw per second
-			lastTime = currentTime;
+            //divided by how many times we want to draw per second
 			
+            lastTime = currentTime; // update lastTime to the current time for the next iteration
+			
+            // checking if enough time has passed before repainting
 			if(delta>=1) {
 				repaint();
-				delta--;
+				delta--; // subtract delta by 1 to indicate that you refreshed the page
 			}
 		}
     }
 }
-
-// Game Loop Source
-// https://stackoverflow.com/questions/29523750/gameloop-fps-controller
-// Music Source
-// https://github.com/ssc-red/MusicPlayer 
