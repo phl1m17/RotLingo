@@ -1,3 +1,6 @@
+// Author: Shams C. and Phil M.
+// Purpose: blueprint for multiple choice questions
+
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

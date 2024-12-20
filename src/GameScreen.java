@@ -1,3 +1,5 @@
+// Author: Shams C. and Phil M.
+// Purpose: controls games screen
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
