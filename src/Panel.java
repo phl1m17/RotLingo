@@ -1,3 +1,6 @@
+// Author: Shams C. and Phil M.
+// Purpose: Panel controls swtiching through each screen, constants, thread
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -14,7 +17,7 @@ public class Panel extends JPanel implements Runnable{
 
     // 0 = enter username
     // 1 = level screen
-    // 2 = game screen
+    // 2 >= game screen (level Index = gamePhase-2)
     private int gamePhase = 0;
 
     // Initializing default values such as colors and font

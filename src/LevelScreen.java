@@ -1,3 +1,6 @@
+// Author: Shams C. and Phil M.
+// Purpose: controls level screen
+
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

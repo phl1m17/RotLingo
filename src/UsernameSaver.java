@@ -1,3 +1,6 @@
+// Author: Shams C. and Phil M.
+// Purpose: controls saving and loading user date
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;

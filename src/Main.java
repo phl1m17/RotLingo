@@ -1,3 +1,7 @@
+// Author: Shams C. and Phil M.
+// Date: December 20th 2024 
+// Purpose: Main class
+
 import javax.swing.JFrame;
 
 // Main Class with the main method
