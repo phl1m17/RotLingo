@@ -2,8 +2,8 @@
 // Purpose: controls games screen
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.sound.sampled.LineUnavailableException;
@@ -13,9 +13,10 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-public final class GameScreen implements ActionListener{
+public final class GameScreen {
     // declaring the questionCount
     int questionCount = 0;
+    int progressBar = 20;
 
     // Initializing a panel class object
     Panel panel;
@@ -42,7 +43,42 @@ public final class GameScreen implements ActionListener{
         continueButton.setFont(panel.getFont().deriveFont(30f));
         continueButton.setOpaque(true);
         continueButton.setBorder(BorderFactory.createLineBorder(panel.getDuoNavyBlue(), 4));
-        continueButton.addActionListener(this); 
+        continueButton.addActionListener((ActionEvent e) -> {
+            // checks if the continue button is pressed
+            if(e.getSource()==continueButton){
+                continueButton.setBackground(panel.getDuoNavyBlue());
+                // checks if the level is finished and it showed the mark
+                if(questionCount==questions.size()){
+                    panel.levelScreen.levelsFinished[panel.getGamePhase()-2] = true; // changing the boolean to true since the level has been completed
+                    panel.usernameSaver.updateLevels(panel.getGamePhase()-2); // updating the levels finished by the player in the text file
+                    panel.changePhase(1); // go back to the level screen
+                    // reset questionCount and score
+                    questionCount = 0;
+                    progressBar = 0;
+                    score = 0;
+                }
+                // if the level is finished but the mark hasnt been shown
+                else if(questionCount==questions.size()-1){
+                    panel.removeAll(); // remove all components
+                    panel.add(continueButton); // add continue button
+                    // add mark label
+                    scoreLabel.setText("Marks: " + String.format("%.2f", (((double)score/questions.size())*100)) + "%");
+                    panel.add(scoreLabel);
+                    // add one more to the question count
+                    questionCount++;
+                    progressBar+=42;
+                }
+                // if the level hasnt been finished then you add to the
+                // question count and remove all and add the components
+                // of the next question
+                else{
+                    questionCount++;
+                    progressBar+=42;
+                    panel.removeAll();
+                    addComponents();
+                }
+            }
+        }); 
 
         // Setting up the score label
         scoreLabel = new JLabel("", SwingConstants.CENTER);
@@ -54,25 +90,17 @@ public final class GameScreen implements ActionListener{
     // the button clicked in the level screen
     public void levelStart(int level){
         switch(level){
-            case 2:
-                level1();
-                break;
-            case 3:
-                level2();
-                break;
-            case 4:
-                level3();
-                break;
-            case 5:
-                level4();
-                break;
-            case 6:
-                level5();
-                break;
-            case 7:
-                level6();
-                break;
+            case 2 -> level1();
+            case 3 -> level2();
+            case 4 -> level3();
+            case 5 -> level4();
+            case 6 -> level5();
+            case 7 -> level6();
         }
+    }
+    public void paint(Graphics g){
+        g.setColor(panel.getDuoGreen());
+        g.fillRect(20, 15, progressBar, 15);
     }
     public void level1(){
         questions.clear();
@@ -333,39 +361,5 @@ public final class GameScreen implements ActionListener{
         questions.get(questionCount).addComponents();
         continueButton.setEnabled(false);
         panel.add(continueButton);
-    }
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        // checks if the continue button is pressed
-        if(e.getSource()==continueButton){
-            continueButton.setBackground(panel.getDuoNavyBlue());
-            // checks if the level is finished and it showed the mark
-            if(questionCount==questions.size()){
-                panel.levelScreen.levelsFinished[panel.getGamePhase()-2] = true; // changing the boolean to true since the level has been completed
-                panel.usernameSaver.updateLevels(panel.getGamePhase()-2); // updating the levels finished by the player in the text file
-                panel.changePhase(1); // go back to the level screen
-                // reset questionCount and score
-                questionCount = 0;
-                score = 0;
-            }
-            // if the level is finished but the mark hasnt been shown
-            else if(questionCount==questions.size()-1){
-                panel.removeAll(); // remove all components
-                panel.add(continueButton); // add continue button
-                // add mark label
-                scoreLabel.setText("Marks: " + String.format("%.2f", (((double)score/questions.size())*100)) + "%");
-                panel.add(scoreLabel);
-                // add one more to the question count
-                questionCount++;
-            }
-            // if the level hasnt been finished then you add to the 
-            // question count and remove all and add the components 
-            // of the next question
-            else{
-                questionCount++;
-                panel.removeAll();
-                addComponents();
-            }
-        }
     }
 }

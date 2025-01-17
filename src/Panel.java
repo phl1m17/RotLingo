@@ -4,10 +4,13 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.Graphics;
 import java.io.File;
+import java.io.IOException;
 import javax.swing.JPanel;
 
-public class Panel extends JPanel implements Runnable{
+public final class Panel extends JPanel implements Runnable{
     // Screen Dimensions
     final int screenWidth = 400;
     final int screenHeight = 650;
@@ -39,6 +42,7 @@ public class Panel extends JPanel implements Runnable{
     Thread gameThread;
 
     //getters
+    @Override
     public Font getFont(){
         return font;
     }
@@ -64,7 +68,7 @@ public class Panel extends JPanel implements Runnable{
             // also specify the font size using the deriveFont method which accepts a float
             font = Font.createFont(Font.TRUETYPE_FONT, file).deriveFont(12f);
             return font;
-        } catch (Exception e) {}
+        } catch (FontFormatException | IOException e) {}
         return null;
     }
     // Default Constructor
@@ -105,6 +109,13 @@ public class Panel extends JPanel implements Runnable{
         gameThread = new Thread(this); // Initilizing the gameThread 
         // with this as in the runnable interface which is implemented in the class
         gameThread.start(); // .start() is a method in the Thread class
+    }
+    @Override
+    public void paintComponent(Graphics g){
+        super.paintComponent(g);
+        if(gamePhase > 1) {
+            gameScreen.paint(g);
+        }
     }
     // run is an abstract method in the runnable interface
     @Override
