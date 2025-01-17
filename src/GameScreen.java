@@ -54,7 +54,7 @@ public final class GameScreen {
                     panel.changePhase(1); // go back to the level screen
                     // reset questionCount and score
                     questionCount = 0;
-                    progressBar = 0;
+                    progressBar = 20;
                     score = 0;
                 }
                 // if the level is finished but the mark hasnt been shown
