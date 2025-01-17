@@ -70,6 +70,8 @@ public class SoundMultipleChoiceQuestion extends Question implements ActionListe
         audioButton.setForeground(panel.getDuoNavyBlue());
         audioButton.addActionListener(this);
         audioButton.setBackground(panel.getDuoBlue());
+        audioButton.setOpaque(true);
+        audioButton.setBorder(BorderFactory.createLineBorder(panel.getDuoNavyBlue(), 4));
     }
     @Override
     public void actionPerformed(ActionEvent e) {
