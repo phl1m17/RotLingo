@@ -16,7 +16,7 @@ import javax.swing.SwingConstants;
 public final class GameScreen {
     // declaring the questionCount
     int questionCount = 0;
-    int progressBar = 20;
+    int progressBar;
 
     // Initializing a panel class object
     Panel panel;
@@ -54,7 +54,6 @@ public final class GameScreen {
                     panel.changePhase(1); // go back to the level screen
                     // reset questionCount and score
                     questionCount = 0;
-                    progressBar = 20;
                     score = 0;
                 }
                 // if the level is finished but the mark hasnt been shown
@@ -66,14 +65,14 @@ public final class GameScreen {
                     panel.add(scoreLabel);
                     // add one more to the question count
                     questionCount++;
-                    progressBar+=42;
+                    updateBar();
                 }
                 // if the level hasnt been finished then you add to the
                 // question count and remove all and add the components
                 // of the next question
                 else{
                     questionCount++;
-                    progressBar+=42;
+                    updateBar();
                     panel.removeAll();
                     addComponents();
                 }
@@ -89,6 +88,7 @@ public final class GameScreen {
     // a switch statement that calls the specific level based on 
     // the button clicked in the level screen
     public void levelStart(int level){
+        progressBar = 0;
         switch(level){
             case 2 -> level1();
             case 3 -> level2();
@@ -97,6 +97,9 @@ public final class GameScreen {
             case 6 -> level5();
             case 7 -> level6();
         }
+    }
+    public void updateBar() {
+        progressBar += (panel.screenWidth - 40) / (questions.size());
     }
     public void paint(Graphics g){
         g.setColor(panel.getDuoGreen());

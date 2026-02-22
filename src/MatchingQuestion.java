@@ -1,6 +1,5 @@
 import java.awt.Color;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import javax.swing.BorderFactory;
@@ -152,17 +151,14 @@ public class MatchingQuestion extends Question implements ItemListener{
         buttons[1][b].setBackground(panel.getDuoRed());
         
         // Since gameThread.sleep didnt work we had to use Timer class from javax.swing
-        Timer timer = new Timer(1000, new ActionListener(){ // Timer requires a int delay and an action performed interface
-            // needed to make an anonymous class since we need the actionperfomed method to access a and b
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(trys>0){
-                    buttons[0][a].setBackground(panel.getDuoNavyBlue());
-                    buttons[1][b].setBackground(panel.getDuoNavyBlue());
-                }
+        Timer timer = new Timer(1000, (ActionEvent e) -> {
+            if(trys>0){
+                buttons[0][a].setBackground(panel.getDuoNavyBlue());
+                buttons[1][b].setBackground(panel.getDuoNavyBlue());
             }
-            
-        });
+        } // Timer requires a int delay and an action performed interface
+        // needed to make an anonymous class since we need the actionperfomed method to access a and b
+        );
         timer.setRepeats(false);
         timer.start();
         trys--;
